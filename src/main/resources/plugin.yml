@@ -1,0 +1,4 @@
+name: PowerfulBackpacks
+version: '${project.version}'
+main: fun.felipe.powerfulbackpacks.PowerfulBackpacks
+api-version: '1.20'
