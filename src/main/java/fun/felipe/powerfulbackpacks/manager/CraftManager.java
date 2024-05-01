@@ -1,9 +1,11 @@
 package fun.felipe.powerfulbackpacks.manager;
 
 import fun.felipe.powerfulbackpacks.entities.Recipe;
+import fun.felipe.powerfulbackpacks.utils.StringUtils;
 import fun.felipe.powerfulbackpacks.utils.items.ItemUtils;
 import fun.felipe.powerfulbackpacks.utils.items.PersistentDataUtils;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
@@ -11,7 +13,6 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.*;
 
-//TODO: TRADUZIR TODAS AS LOGS PARA INGLÊS!
 public class CraftManager {
     final Plugin plugin;
     @Getter
@@ -24,9 +25,10 @@ public class CraftManager {
     }
 
     private void loadRecipes() {
+        Bukkit.getConsoleSender().sendMessage("<green>[PowerfulBackpacks] Starting the process of loading the backpacks!");
         ConfigurationSection backpackSection = this.plugin.getConfig().getConfigurationSection("Backpacks");
         if (backpackSection == null) {
-            this.plugin.getLogger().severe("Não foi encontrada a Lista de Mochilas na Config.yml!");
+            this.plugin.getLogger().severe("Backpack List not found in Config!");
             this.plugin.getServer().getPluginManager().disablePlugin(this.plugin);
             return;
         }
@@ -34,7 +36,7 @@ public class CraftManager {
         for (String backpack : backpackSection.getKeys(false)) {
             ConfigurationSection internalBackpackSection = backpackSection.getConfigurationSection(backpack);
             if (internalBackpackSection == null) {
-                this.plugin.getLogger().severe("Não foi encontrada as Configurações internas da Mochila: " + backpack + " na Config.yml!");
+                this.plugin.getLogger().severe("Backpack internal settings not found! (%s)".formatted(backpack));
                 this.plugin.getServer().getPluginManager().disablePlugin(this.plugin);
                 return;
             }
@@ -43,6 +45,8 @@ public class CraftManager {
             List<String> backpackLore = internalBackpackSection.getStringList("lore");
             int backpackRows = internalBackpackSection.getInt("rows");
 
+            if (backpackRows == 0) backpackRows = 1;
+
             ItemStack backpackItemStack = ItemUtils.createBundleItemStack(Material.BUNDLE, backpackName, backpackLore);
             PersistentDataUtils.addStringData(backpackItemStack, "type", backpack);
             PersistentDataUtils.addStringData(backpackItemStack, "content", "");
@@ -50,7 +54,7 @@ public class CraftManager {
 
             ConfigurationSection craftInternalBackpackSection = internalBackpackSection.getConfigurationSection("craft");
             if (craftInternalBackpackSection == null) {
-                this.plugin.getLogger().severe("Não foi encontrada as Configurações de Crafting da Mochila:" + backpack + " na Config.yml!");
+                this.plugin.getLogger().severe("Backpack craft settings not found! (%s)".formatted(backpack));
                 this.plugin.getServer().getPluginManager().disablePlugin(this.plugin);
                 return;
             }
@@ -61,7 +65,7 @@ public class CraftManager {
 
             ConfigurationSection itemsCraftInternalBackpackSection = craftInternalBackpackSection.getConfigurationSection("items");
             if (itemsCraftInternalBackpackSection == null) {
-                this.plugin.getLogger().severe("Não foi encontrada a Lista de Itens do Craft da Mochila: " + backpack + " na Config.yml!");
+                this.plugin.getLogger().severe("Backpack material settings no found! (%s)".formatted(backpack));
                 this.plugin.getServer().getPluginManager().disablePlugin(this.plugin);
                 return;
             }
@@ -70,7 +74,7 @@ public class CraftManager {
             for (String key : itemsCraftInternalBackpackSection.getKeys(false)) {
                 String stringMaterial = itemsCraftInternalBackpackSection.getString(key.toUpperCase());
                 if (stringMaterial == null) {
-                    this.plugin.getLogger().severe("A Chave " + key + " se encontra Nula na Mochila: " + backpack + " na Config.yml!");
+                    this.plugin.getLogger().severe("Item key %s is null! (%s)".formatted(key, backpack));
                     this.plugin.getServer().getPluginManager().disablePlugin(this.plugin);
                     return;
                 }
@@ -80,7 +84,7 @@ public class CraftManager {
                 if (key.equals("$")) {
                     ItemStack backpackRecoveredItem = getResultByBackpackID(stringMaterial);
                     if (backpackRecoveredItem == null) {
-                        this.plugin.getLogger().severe("A Mochila referênciada não foi encontrada na Config.yml!");
+                        this.plugin.getLogger().severe("The referenced Backpack (%s) was not found! (%s)".formatted(stringMaterial, backpack));
                         this.plugin.getServer().getPluginManager().disablePlugin(this.plugin);
                         return;
                     }
@@ -89,7 +93,7 @@ public class CraftManager {
                 } else {
                     Material material = Material.matchMaterial(stringMaterial);
                     if (material == null) {
-                        this.plugin.getLogger().severe("O Material não foi encontrado! (" + stringMaterial + ")");
+                        this.plugin.getLogger().severe("The material was not found! (%s)".formatted(stringMaterial));
                         this.plugin.getServer().getPluginManager().disablePlugin(this.plugin);
                         return;
                     }
@@ -110,6 +114,7 @@ public class CraftManager {
                         backpackShape[shapeIndex] = new ItemStack(backpackCraftMaterials.get(materialKey));
 
                     this.backpackRecipes.add(new Recipe(backpack, backpackShape, backpackItemStack));
+                    Bukkit.getConsoleSender().sendMessage(StringUtils.format("<green>[PowerfulBackpacks] %s has been loaded Successfully!".formatted(backpack)));
                     shapeIndex++;
                 }
             }
