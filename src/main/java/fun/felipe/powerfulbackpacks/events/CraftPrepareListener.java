@@ -1,11 +1,15 @@
 package fun.felipe.powerfulbackpacks.events;
 
+import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
+import fun.felipe.powerfulbackpacks.entities.Recipe;
+import fun.felipe.powerfulbackpacks.utils.items.PersistentDataUtils;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
-
-import java.util.Arrays;
 
 public class CraftPrepareListener implements Listener {
     final Plugin plugin;
@@ -17,7 +21,24 @@ public class CraftPrepareListener implements Listener {
 
     @EventHandler
     public void onCraftInteract(PrepareItemCraftEvent event) {
-        System.out.println("fui chamado!");
-        System.out.println("Matrix: " + Arrays.toString(event.getInventory().getMatrix()));
+        if (!event.getInventory().getType().equals(InventoryType.WORKBENCH)) return;
+        Recipe recipe = PowerfulBackpacks.getInstance().getCraftManager().isCustomCraft(event.getInventory().getMatrix());
+        if (recipe == null) return;
+
+        ItemStack bundle = null;
+        for (int i = 0; i < event.getInventory().getMatrix().length; i++) {
+            ItemStack currentItem = event.getInventory().getMatrix()[i];
+            if (currentItem == null) continue;
+            if (currentItem.getType().equals(Material.BUNDLE))
+                bundle = event.getInventory().getMatrix()[i];
+        }
+
+        String oldContent = "";
+        if (bundle != null)
+            oldContent = PersistentDataUtils.getStringData(bundle, "content");
+
+        ItemStack result = recipe.result().clone();
+        PersistentDataUtils.addStringData(result, "content", oldContent);
+        event.getInventory().setResult(result);
     }
 }

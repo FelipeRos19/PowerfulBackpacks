@@ -1,9 +1,6 @@
 package fun.felipe.powerfulbackpacks;
 
-import fun.felipe.powerfulbackpacks.events.AnvilPrepareListener;
-import fun.felipe.powerfulbackpacks.events.CraftPrepareListener;
-import fun.felipe.powerfulbackpacks.events.PlayerInteractListener;
-import fun.felipe.powerfulbackpacks.events.PlayerInventoryListener;
+import fun.felipe.powerfulbackpacks.events.*;
 import fun.felipe.powerfulbackpacks.manager.CraftManager;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
 import lombok.Getter;
@@ -14,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class PowerfulBackpacks extends JavaPlugin {
     @Getter
     private static PowerfulBackpacks instance;
+    @Getter
     private CraftManager craftManager;
 
     @Override

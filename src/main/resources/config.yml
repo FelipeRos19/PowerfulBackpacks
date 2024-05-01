@@ -15,5 +15,19 @@ Backpacks:
         - 'C C'
         - 'CCC'
       items:
-        c: MINECRAFT_LEATHER
-        d: TEST
+        C: LEATHER
+  example2_backpack: #ID of Backpack (explicar que precisa ser sneak_case e colocar o link de explicação)
+    name: '<grey>Example2 Backpack' #Name of Item
+    lore: #Lore of Item
+      - ''
+      - 'Example2 Backpack'
+      - ''
+    rows: 1 #Número de Linhas de armazenamento
+    craft:
+      shape:
+        - 'CCC'
+        - 'C$C'
+        - 'CCC'
+      items:
+        C: LEATHER
+        $: example_backpack

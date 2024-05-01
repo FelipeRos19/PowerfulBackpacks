@@ -9,10 +9,10 @@ import org.bukkit.inventory.meta.BundleMeta;
 import java.util.List;
 
 public class ItemUtils {
-    public static ItemStack createItemStack(Material type, String name, List<String> lore) {
+    public static ItemStack createBundleItemStack(Material type, String name, List<String> lore) {
         ItemStack itemStack = new ItemStack(type);
         BundleMeta bundleMeta = (BundleMeta) itemStack.getItemMeta();
-        //bundleMeta.addItemFlags(ItemFlag.HIDE_ITEM_SPECIFICS);
+        bundleMeta.addItemFlags(ItemFlag.HIDE_ITEM_SPECIFICS);
         bundleMeta.displayName(StringUtils.formatItemName(name));
         bundleMeta.lore(StringUtils.formatLore(lore));
         itemStack.setItemMeta(bundleMeta);

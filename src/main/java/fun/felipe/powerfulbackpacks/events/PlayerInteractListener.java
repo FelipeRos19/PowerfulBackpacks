@@ -33,6 +33,8 @@ public class PlayerInteractListener implements Listener {
         else
             inventoryContent = SerializationUtils.inventoryFromBase64(serializedContent);
 
-        event.getPlayer().openInventory(new BackpackGUI("<red>Mochila", 9, event.getItem(), inventoryContent).getInventory());
+        int backpackRows = PersistentDataUtils.getIntData(event.getItem(), "rows");
+
+        event.getPlayer().openInventory(new BackpackGUI(event.getItem().getItemMeta().displayName(), backpackRows * 9, event.getItem(), inventoryContent).getInventory());
     }
 }

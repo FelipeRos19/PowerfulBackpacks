@@ -1,7 +1,7 @@
 package fun.felipe.powerfulbackpacks.gui;
 
-import fun.felipe.powerfulbackpacks.utils.StringUtils;
 import lombok.Getter;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -13,9 +13,9 @@ public class BackpackGUI implements InventoryHolder {
     @Getter
     private final ItemStack backpack;
 
-    public BackpackGUI(String title, int slots, ItemStack itemStack, Inventory content) {
+    public BackpackGUI(Component title, int slots, ItemStack itemStack, Inventory content) {
         this.backpack = itemStack;
-        this.inventory = Bukkit.createInventory(this, slots, StringUtils.format(title));
+        this.inventory = Bukkit.createInventory(this, slots, title);
         this.inventory.setContents(content.getContents());
     }
 

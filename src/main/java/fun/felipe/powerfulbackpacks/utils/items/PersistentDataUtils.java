@@ -14,6 +14,12 @@ public class PersistentDataUtils {
         itemStack.setItemMeta(meta);
     }
 
+    public static void addIntData(ItemStack itemStack, String key, int data) {
+        ItemMeta meta = itemStack.getItemMeta();
+        meta.getPersistentDataContainer().set(buildKey(key), PersistentDataType.INTEGER, data);
+        itemStack.setItemMeta(meta);
+    }
+
     public static boolean hasData(ItemStack itemStack, String key) {
         ItemMeta meta = itemStack.getItemMeta();
         return meta.getPersistentDataContainer().has(buildKey(key));
@@ -22,6 +28,11 @@ public class PersistentDataUtils {
     public static String getStringData(ItemStack itemStack, String key) {
         ItemMeta meta = itemStack.getItemMeta();
         return meta.getPersistentDataContainer().get(buildKey(key), PersistentDataType.STRING);
+    }
+
+    public static Integer getIntData(ItemStack itemStack, String key) {
+        ItemMeta meta = itemStack.getItemMeta();
+        return meta.getPersistentDataContainer().get(buildKey(key), PersistentDataType.INTEGER);
     }
 
     public static NamespacedKey buildKey(String key) {
