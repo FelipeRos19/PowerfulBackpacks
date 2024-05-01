@@ -25,7 +25,7 @@ public class CraftManager {
     }
 
     private void loadRecipes() {
-        Bukkit.getConsoleSender().sendMessage("<green>[PowerfulBackpacks] Starting the process of loading the backpacks!");
+        Bukkit.getConsoleSender().sendMessage(StringUtils.format("<green>[PowerfulBackpacks] Starting the process of loading the backpacks!"));
         ConfigurationSection backpackSection = this.plugin.getConfig().getConfigurationSection("Backpacks");
         if (backpackSection == null) {
             this.plugin.getLogger().severe("Backpack List not found in Config!");
@@ -61,7 +61,6 @@ public class CraftManager {
 
             ItemStack[] backpackShape = new ItemStack[9];
             List<String> backpackCraftShape = craftInternalBackpackSection.getStringList("shape");
-            System.out.println(backpackCraftShape);
 
             ConfigurationSection itemsCraftInternalBackpackSection = craftInternalBackpackSection.getConfigurationSection("items");
             if (itemsCraftInternalBackpackSection == null) {
@@ -113,11 +112,11 @@ public class CraftManager {
                     else
                         backpackShape[shapeIndex] = new ItemStack(backpackCraftMaterials.get(materialKey));
 
-                    this.backpackRecipes.add(new Recipe(backpack, backpackShape, backpackItemStack));
-                    Bukkit.getConsoleSender().sendMessage(StringUtils.format("<green>[PowerfulBackpacks] %s has been loaded Successfully!".formatted(backpack)));
                     shapeIndex++;
                 }
             }
+            this.backpackRecipes.add(new Recipe(backpack, backpackShape, backpackItemStack));
+            Bukkit.getConsoleSender().sendMessage(StringUtils.format("<green>[PowerfulBackpacks] %s has been loaded Successfully!".formatted(backpack)));
         }
     }
 
