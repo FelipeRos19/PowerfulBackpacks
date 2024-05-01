@@ -1,6 +1,7 @@
 package fun.felipe.powerfulbackpacks.manager;
 
-import fun.felipe.powerfulbackpacks.entities.Recipe;
+import fun.felipe.powerfulbackpacks.entities.BackpackEntity;
+import fun.felipe.powerfulbackpacks.entities.RecipeEntity;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
 import fun.felipe.powerfulbackpacks.utils.items.ItemUtils;
 import fun.felipe.powerfulbackpacks.utils.items.PersistentDataUtils;
@@ -16,11 +17,14 @@ import java.util.*;
 public class CraftManager {
     final Plugin plugin;
     @Getter
-    private final List<Recipe> backpackRecipes;
+    private final List<RecipeEntity> backpackRecipes;
+    @Getter
+    private final List<BackpackEntity> registeredBackpacks;
 
     public CraftManager(Plugin plugin) {
         this.plugin = plugin;
         this.backpackRecipes = new ArrayList<>();
+        this.registeredBackpacks = new ArrayList<>();
         loadRecipes();
     }
 
@@ -44,6 +48,8 @@ public class CraftManager {
             String backpackName = internalBackpackSection.getString("name");
             List<String> backpackLore = internalBackpackSection.getStringList("lore");
             int backpackRows = internalBackpackSection.getInt("rows");
+
+            this.registeredBackpacks.add(new BackpackEntity(backpackName, backpackLore, backpackRows));
 
             if (backpackRows == 0) backpackRows = 1;
 
@@ -115,20 +121,20 @@ public class CraftManager {
                     shapeIndex++;
                 }
             }
-            this.backpackRecipes.add(new Recipe(backpack, backpackShape, backpackItemStack));
+            this.backpackRecipes.add(new RecipeEntity(backpack, backpackShape, backpackItemStack));
             Bukkit.getConsoleSender().sendMessage(StringUtils.format("<green>[PowerfulBackpacks] %s has been loaded Successfully!".formatted(backpack)));
         }
     }
 
-    private ItemStack getResultByBackpackID(String backpackID) {
-        for (Recipe recipe : this.backpackRecipes) {
+    public ItemStack getResultByBackpackID(String backpackID) {
+        for (RecipeEntity recipe : this.backpackRecipes) {
             if (recipe.backpackID().equals(backpackID))
-                return recipe.result();
+                return recipe.result().clone();
         }
         return null;
     }
 
-    public Recipe isCustomCraft(ItemStack[] craftMatrix) {
+    public RecipeEntity isCustomCraft(ItemStack[] craftMatrix) {
         for (int i = 0; i < craftMatrix.length; i++) {
             if (craftMatrix[i] != null) {
                 if (craftMatrix[i].getType().equals(Material.BUNDLE)) {
@@ -138,7 +144,7 @@ public class CraftManager {
             }
         }
 
-        for (Recipe recipe : this.backpackRecipes) {
+        for (RecipeEntity recipe : this.backpackRecipes) {
             if (Arrays.equals(recipe.shape(), craftMatrix)) {
                 return recipe;
             }

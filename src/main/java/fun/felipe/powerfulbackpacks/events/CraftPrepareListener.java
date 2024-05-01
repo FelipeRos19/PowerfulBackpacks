@@ -1,7 +1,7 @@
 package fun.felipe.powerfulbackpacks.events;
 
 import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
-import fun.felipe.powerfulbackpacks.entities.Recipe;
+import fun.felipe.powerfulbackpacks.entities.RecipeEntity;
 import fun.felipe.powerfulbackpacks.utils.items.PersistentDataUtils;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -22,7 +22,7 @@ public class CraftPrepareListener implements Listener {
     @EventHandler
     public void onCraftInteract(PrepareItemCraftEvent event) {
         if (!event.getInventory().getType().equals(InventoryType.WORKBENCH)) return;
-        Recipe recipe = PowerfulBackpacks.getInstance().getCraftManager().isCustomCraft(event.getInventory().getMatrix());
+        RecipeEntity recipe = PowerfulBackpacks.getInstance().getCraftManager().isCustomCraft(event.getInventory().getMatrix());
         if (recipe == null) return;
 
         ItemStack bundle = null;
