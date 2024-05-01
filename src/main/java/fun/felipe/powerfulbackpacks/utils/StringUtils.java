@@ -28,6 +28,10 @@ public class StringUtils {
     }
 
     public static String strip(Component component) {
+        return MiniMessage.miniMessage().serialize(component);
+    }
+
+    public static String getText(Component component) {
         TextComponent text = (TextComponent) component;
         return text.content();
     }

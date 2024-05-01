@@ -19,12 +19,12 @@ public class CraftManager {
     @Getter
     private final List<RecipeEntity> backpackRecipes;
     @Getter
-    private final List<BackpackEntity> registeredBackpacks;
+    private final Map<String, BackpackEntity> registeredBackpacks;
 
     public CraftManager(Plugin plugin) {
         this.plugin = plugin;
         this.backpackRecipes = new ArrayList<>();
-        this.registeredBackpacks = new ArrayList<>();
+        this.registeredBackpacks = new HashMap<>();
         loadRecipes();
     }
 
@@ -49,7 +49,7 @@ public class CraftManager {
             List<String> backpackLore = internalBackpackSection.getStringList("lore");
             int backpackRows = internalBackpackSection.getInt("rows");
 
-            this.registeredBackpacks.add(new BackpackEntity(backpackName, backpackLore, backpackRows));
+            this.registeredBackpacks.put(backpack, new BackpackEntity(backpackName, backpackLore, backpackRows));
 
             if (backpackRows == 0) backpackRows = 1;
 

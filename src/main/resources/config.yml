@@ -1,5 +1,23 @@
-#Utilizar Adventure para estilizar as mensagens! (traduzir para inglês)
-#Utilizar o Minecraft Item para definir o Material de Craft!
+#To decorate the texts you need to use AdventureAPI MiniMessages! (Wiki: https://docs.advntr.dev/minimessage/index.html)
+#To define the materials for crafting, you must follow the updated item pattern! Example: 'LEATHER' 'STONE' 'DIAMOND'.
+#To define a backpack when creating, use the special character '$' and in the list of 'items' pass the ID of that backpack as a parameter!
+
+#List of Placeholders:
+# - %permission% = command permission
+# - %backpack% = backpack ID param
+# - %backpack_name% = backpack name
+# - $backpack_rows% = backpack rows number
+# - $backpack_slots% = backpack slots number
+
+Permission: 'powerfulbackpacks.use' #If this field is not filled in, the permission will be "powerfullbackpacks.use"
+
+Messages:
+  dont_have_permission: '<red>You do not have Permission! (%permission%)'
+  not_found: "<red>Backpack was not found! (%backpack%)"
+  give_command_usage: '<yellow>Use: /givebackpack <backpack_id>'
+  give_command_success: '<green>Backpack %backpack% received Successfully!'
+  list_command_message: '<green>List of Backpacks:'
+  list_command_items_message: '<green> - %backpack_name% (%backpack%)'
 
 Backpacks:
   example_backpack: #ID of Backpack (explicar que precisa ser sneak_case e colocar o link de explicação)
@@ -15,7 +33,7 @@ Backpacks:
         - 'C C'
         - 'CCC'
       items:
-        C: LEATHER
+        C: 'LEATHER'
   example2_backpack: #ID of Backpack (explicar que precisa ser sneak_case e colocar o link de explicação)
     name: '<grey>Example2 Backpack' #Name of Item
     lore: #Lore of Item
@@ -29,5 +47,5 @@ Backpacks:
         - 'C$C'
         - 'CCC'
       items:
-        C: LEATHER
-        $: example_backpack
+        C: 'LEATHER'
+        $: 'example_backpack'
