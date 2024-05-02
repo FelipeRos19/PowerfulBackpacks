@@ -1,5 +1,6 @@
 package fun.felipe.powerfulbackpacks.manager;
 
+import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
 import fun.felipe.powerfulbackpacks.entities.BackpackEntity;
 import fun.felipe.powerfulbackpacks.entities.RecipeEntity;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
@@ -48,12 +49,11 @@ public class CraftManager {
             String backpackName = internalBackpackSection.getString("name");
             List<String> backpackLore = internalBackpackSection.getStringList("lore");
             int backpackRows = internalBackpackSection.getInt("rows");
-
-            this.registeredBackpacks.put(backpack, new BackpackEntity(backpackName, backpackLore, backpackRows));
-
             if (backpackRows == 0) backpackRows = 1;
 
-            ItemStack backpackItemStack = ItemUtils.createBundleItemStack(Material.BUNDLE, backpackName, backpackLore);
+            this.registeredBackpacks.put(backpack, new BackpackEntity(backpack, backpackName, backpackLore, backpackRows));
+
+            ItemStack backpackItemStack = ItemUtils.createBundleItemStack(Material.BUNDLE, backpackName, PowerfulBackpacks.getInstance().getMessagesManager().createLore(this.registeredBackpacks.get(backpack)));
             PersistentDataUtils.addStringData(backpackItemStack, "type", backpack);
             PersistentDataUtils.addStringData(backpackItemStack, "content", "");
             PersistentDataUtils.addIntData(backpackItemStack, "rows", backpackRows);

@@ -2,7 +2,7 @@
 #To define the materials for crafting, you must follow the updated item pattern! Example: 'LEATHER' 'STONE' 'DIAMOND'.
 #To define a backpack when creating, use the special character '$' and in the list of 'items' pass the ID of that backpack as a parameter!
 
-#List of Placeholders:
+#List of Placeholders: (Only works in Lore!)
 # - %permission% = command permission
 # - %backpack% = backpack ID param
 # - %backpack_name% = backpack name
@@ -12,40 +12,44 @@
 Permission: 'powerfulbackpacks.use' #If this field is not filled in, the permission will be "powerfullbackpacks.use"
 
 Messages:
-  dont_have_permission: '<red>You do not have Permission! (%permission%)'
-  not_found: "<red>Backpack was not found! (%backpack%)"
+  dont_have_permission: '<red>You do not have Permission!'
+  not_found: "<red>Backpack was not found!"
   give_command_usage: '<yellow>Use: /givebackpack <backpack_id>'
-  give_command_success: '<green>Backpack %backpack% received Successfully!'
+  give_command_success: '<green>Backpack received Successfully!'
   list_command_message: '<green>List of Backpacks:'
   list_command_items_message: '<green> - %backpack_name% (%backpack%)'
 
 Backpacks:
-  example_backpack: #ID of Backpack (explicar que precisa ser sneak_case e colocar o link de explicação)
-    name: '<grey>Example Backpack' #Name of Item
+  basic_backpack: #ID of Backpack (explicar que precisa ser sneak_case e colocar o link de explicação)
+    name: '<grey>Basic Backpack' #Name of Item
     lore: #Lore of Item
       - ''
-      - 'Example Backpack'
+      - '<grey>Its a Basic Backpack'
+      - '<grey>Rows: <bold><gold>%backpack_rows%'
+      - '<grey>Slots: <bold><gold>%backpack_slots%'
       - ''
-    rows: 1 #Número de Linhas de armazenamento
+    rows: 1 #Number of Rows
     craft:
       shape:
-        - 'CCC'
-        - 'C C'
-        - 'CCC'
+        - 'LLL'
+        - 'L L'
+        - 'LLL'
       items:
-        C: 'LEATHER'
-  example2_backpack: #ID of Backpack (explicar que precisa ser sneak_case e colocar o link de explicação)
-    name: '<grey>Example2 Backpack' #Name of Item
-    lore: #Lore of Item
+        L: 'LEATHER'
+  reinforced_backpack:
+    name: '<grey>Reinforced Backpack'
+    lore:
       - ''
-      - 'Example2 Backpack'
+      - '<grey>Its a Reinforced Backpack'
+      - '<grey>Rows: <gold>%backpack_rows%'
+      - '<grey>Slots: <gold>%backpack_slots%'
       - ''
-    rows: 1 #Número de Linhas de armazenamento
+    rows: 2
     craft:
       shape:
-        - 'CCC'
-        - 'C$C'
-        - 'CCC'
+        - 'III'
+        - 'I$I'
+        - 'III'
       items:
-        C: 'LEATHER'
-        $: 'example_backpack'
+        I: 'IRON_INGOT'
+        $: 'basic_backpack'

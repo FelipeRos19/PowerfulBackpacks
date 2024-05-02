@@ -29,24 +29,24 @@ public class GiveBackpackCommand implements CommandExecutor {
         }
 
         if (!player.hasPermission(PowerfulBackpacks.getInstance().getPluginPermission())) {
-            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("dont_have_permission", ""));
+            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("dont_have_permission"));
             return false;
         }
 
         if (args.length != 1) {
-            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("give_command_usage", ""));
+            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("give_command_usage"));
             return false;
         }
 
         ItemStack backpackItemStack = PowerfulBackpacks.getInstance().getCraftManager().getResultByBackpackID(args[0]);
         if (backpackItemStack == null) {
-            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("not_found", args[0]));
+            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("not_found"));
             return false;
         }
 
         player.getInventory().addItem(backpackItemStack);
 
-        player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("give_command_success", args[0]));
+        player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("give_command_success"));
         return true;
     }
 }
