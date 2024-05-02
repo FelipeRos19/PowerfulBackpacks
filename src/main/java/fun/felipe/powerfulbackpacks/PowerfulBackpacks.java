@@ -1,10 +1,9 @@
 package fun.felipe.powerfulbackpacks;
 
-import fun.felipe.powerfulbackpacks.events.AnvilPrepareListener;
-import fun.felipe.powerfulbackpacks.events.CraftPrepareListener;
-import fun.felipe.powerfulbackpacks.events.PlayerInteractListener;
-import fun.felipe.powerfulbackpacks.events.PlayerInventoryListener;
+import fun.felipe.powerfulbackpacks.commands.GiveBackpackCommand;
+import fun.felipe.powerfulbackpacks.events.*;
 import fun.felipe.powerfulbackpacks.manager.CraftManager;
+import fun.felipe.powerfulbackpacks.manager.MessagesManager;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -14,7 +13,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class PowerfulBackpacks extends JavaPlugin {
     @Getter
     private static PowerfulBackpacks instance;
+    @Getter
     private CraftManager craftManager;
+    @Getter
+    private MessagesManager messagesManager;
+    @Getter
+    private String pluginPermission;
 
     @Override
     public void onEnable() {
@@ -35,10 +39,16 @@ public final class PowerfulBackpacks extends JavaPlugin {
         saveDefaultConfig();
         commands();
         events();
+        this.messagesManager = new MessagesManager(this);
         this.craftManager = new CraftManager(this);
+        String permission = this.getConfig().getString("Permission");
+        if (permission == null) permission = "powerfulbackpacks.use";
+        this.pluginPermission = permission;
     }
 
-    private void commands() {}
+    private void commands() {
+        new GiveBackpackCommand(this);
+    }
 
     private void events() {
         new PlayerInteractListener(this);
