@@ -1,6 +1,7 @@
 package fun.felipe.powerfulbackpacks;
 
 import fun.felipe.powerfulbackpacks.commands.GiveBackpackCommand;
+import fun.felipe.powerfulbackpacks.commands.ListBackpackCommand;
 import fun.felipe.powerfulbackpacks.events.*;
 import fun.felipe.powerfulbackpacks.manager.CraftManager;
 import fun.felipe.powerfulbackpacks.manager.MessagesManager;
@@ -48,6 +49,7 @@ public final class PowerfulBackpacks extends JavaPlugin {
 
     private void commands() {
         new GiveBackpackCommand(this);
+        new ListBackpackCommand(this);
     }
 
     private void events() {
