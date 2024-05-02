@@ -17,10 +17,10 @@ Messages:
   give_command_usage: '<yellow>Use: /givebackpack <backpack_id>'
   give_command_success: '<green>Backpack received Successfully!'
   list_command_message: '<green>List of Backpacks:'
-  list_command_items_message: '<green> - %backpack_name% (%backpack%)'
+  list_command_items_message: '<green> - %backpack_name% (%backpack%)' #Only command with placeholders!
 
 Backpacks:
-  basic_backpack: #ID of Backpack (explicar que precisa ser sneak_case e colocar o link de explicação)
+  basic_backpack: #ID of Backpack (use sneak_case in the backpack identifier!)
     name: '<grey>Basic Backpack' #Name of Item
     lore: #Lore of Item
       - ''
@@ -29,12 +29,12 @@ Backpacks:
       - '<grey>Slots: <bold><gold>%backpack_slots%'
       - ''
     rows: 1 #Number of Rows
-    craft:
-      shape:
+    craft: #Craft Struct
+      shape: #Shape of Recipe
         - 'LLL'
         - 'L L'
         - 'LLL'
-      items:
+      items: #Items in Recipe
         L: 'LEATHER'
   reinforced_backpack:
     name: '<grey>Reinforced Backpack'

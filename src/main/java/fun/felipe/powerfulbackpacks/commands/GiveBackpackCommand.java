@@ -17,7 +17,7 @@ public class GiveBackpackCommand implements CommandExecutor {
         this.plugin = plugin;
         PluginCommand command = this.plugin.getServer().getPluginCommand("givebackpack");
         if (command == null)
-            throw new RuntimeException("Erro in Give Backpack Command!");
+            throw new RuntimeException("Error in Give Backpack Command!");
         command.setExecutor(this);
     }
 
