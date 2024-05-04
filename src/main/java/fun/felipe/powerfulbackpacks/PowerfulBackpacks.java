@@ -5,6 +5,7 @@ import fun.felipe.powerfulbackpacks.commands.ListBackpackCommand;
 import fun.felipe.powerfulbackpacks.events.*;
 import fun.felipe.powerfulbackpacks.manager.CraftManager;
 import fun.felipe.powerfulbackpacks.manager.MessagesManager;
+import fun.felipe.powerfulbackpacks.utils.Metrics;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -40,6 +41,7 @@ public final class PowerfulBackpacks extends JavaPlugin {
         saveDefaultConfig();
         commands();
         events();
+        new Metrics(this, 21797);
         this.messagesManager = new MessagesManager(this);
         this.craftManager = new CraftManager(this);
         String permission = this.getConfig().getString("Permission");
