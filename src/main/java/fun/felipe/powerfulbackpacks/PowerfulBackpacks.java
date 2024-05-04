@@ -41,7 +41,8 @@ public final class PowerfulBackpacks extends JavaPlugin {
         saveDefaultConfig();
         commands();
         events();
-        new Metrics(this, 21797);
+        int token = 0;
+        new Metrics(this, token);
         this.messagesManager = new MessagesManager(this);
         this.craftManager = new CraftManager(this);
         String permission = this.getConfig().getString("Permission");
