@@ -3,7 +3,5 @@ version: '${project.version}'
 main: fun.felipe.powerfulbackpacks.PowerfulBackpacks
 api-version: '1.20'
 commands:
-  givebackpack:
-    description: Give a Backpack to Player
-  listbackpack:
-    description: List Backpacks
+  backpack:
+    description: Backpack Command Handler
