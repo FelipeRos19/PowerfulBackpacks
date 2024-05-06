@@ -2,22 +2,31 @@
 
 The **MOST** Complete Backpack plugin for your Server!
 
-## Features:
+### Features:
 - Fully **Customizable** Backpacks!
 - Backpack **Upgrades**!
 - And much More!
 
-## Example Backpack Craft:
+### Requirements
+- Java 17 or higher
+- Spigot (1.20.* or higher) and other forks of Spigot.
+
+### Commands
+- /backpack -> Shows command options.
+- /backpack give <backpack_id> -> Give the Player a Backpack.
+- /backpack list -> Shows the list of available Backpacks.
+
+### Example Backpack Craft:
 ![Replace this with a description](https://cdn.modrinth.com/data/cached_images/63871d98be3058354f076dc3472f89ed6869814c.png)
 
 You can create as many backpacks as you want, define your **Name**, **Lore**, **Rows**, **Recipe** and **Much More**! You can also define other backpacks within the recipe, creating a backpack **upgrade**!
 
-## Example Config:
+### Example Config:
 ![Replace this with a description](https://cdn.modrinth.com/data/cached_images/de57aa1602f4ea18c560d20066149261858737b6.png)
 
 With a simple and quick setup you can use your **Creativity** to create an **Infinite Number** of differents **Backpacks**!
 
-## Useful Links
+### Useful Links
 
 **Plugin Repository**: [Github](https://github.com/FelipeRos19/PowerfulBackpacks)
 
