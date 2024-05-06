@@ -14,7 +14,8 @@ Permission: 'powerfulbackpacks.use' #If this field is not filled in, the permiss
 Messages:
   dont_have_permission: '<red>You do not have Permission! (%permission%)'
   not_found: "<red>Backpack was not found! (%backpack%)"
-  give_command_usage: '<yellow>Use: /givebackpack <backpack_id>'
+  backpack_command_usage: '<yellow>Use: /backpack <give/list>.'
+  give_command_usage: '<yellow>Use: /backpack give <backpack_id>'
   give_command_success: '<green>Backpack %backpack_name% received Successfully!'
   list_command_message: '<green>List of Backpacks:'
   list_command_items_message: '<green> - %backpack_name% (%backpack%)' #Only command with placeholders!
