@@ -1,6 +1,8 @@
 package fun.felipe.powerfulbackpacks.commands;
 
 import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
+import fun.felipe.powerfulbackpacks.entities.BackpackEntity;
+import fun.felipe.powerfulbackpacks.placeholder.implementations.MessagePlaceholder;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,24 +31,26 @@ public class GiveBackpackCommand implements CommandExecutor {
         }
 
         if (!player.hasPermission(PowerfulBackpacks.getInstance().getPluginPermission())) {
-            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("dont_have_permission"));
+            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("dont_have_permission", new MessagePlaceholder("")));
             return false;
         }
 
         if (args.length != 1) {
-            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("give_command_usage"));
+            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("give_command_usage", new MessagePlaceholder("")));
             return false;
         }
 
         ItemStack backpackItemStack = PowerfulBackpacks.getInstance().getCraftManager().getResultByBackpackID(args[0]);
+
         if (backpackItemStack == null) {
-            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("not_found"));
+            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("not_found", new MessagePlaceholder(args[0])));
             return false;
         }
 
         player.getInventory().addItem(backpackItemStack);
 
-        player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("give_command_success"));
+        BackpackEntity backpack = PowerfulBackpacks.getInstance().getCraftManager().getRegisteredBackpacks().get(args[0]);
+        player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("give_command_success", new MessagePlaceholder(backpack.name())));
         return true;
     }
 }

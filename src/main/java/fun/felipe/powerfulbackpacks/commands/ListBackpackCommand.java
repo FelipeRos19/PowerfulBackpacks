@@ -2,9 +2,9 @@ package fun.felipe.powerfulbackpacks.commands;
 
 import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
 import fun.felipe.powerfulbackpacks.entities.BackpackEntity;
-import fun.felipe.powerfulbackpacks.utils.StringUtils;
+import fun.felipe.powerfulbackpacks.placeholder.implementations.BackpackPlaceholder;
+import fun.felipe.powerfulbackpacks.placeholder.implementations.MessagePlaceholder;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextReplacementConfig;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,26 +32,15 @@ public class ListBackpackCommand implements CommandExecutor {
         }
 
         if (!player.hasPermission(PowerfulBackpacks.getInstance().getPluginPermission())) {
-            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("dont_have_permission"));
+            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("dont_have_permission", new MessagePlaceholder("")));
             return false;
         }
 
-        Component messageHeader = PowerfulBackpacks.getInstance().getMessagesManager().createMessage("list_command_message");
-        Component messagePattern = PowerfulBackpacks.getInstance().getMessagesManager().createMessage("list_command_items_message");
-
+        Component messageHeader = PowerfulBackpacks.getInstance().getMessagesManager().createMessage("list_command_message", new MessagePlaceholder(""));
         player.sendMessage(messageHeader);
+
         for (BackpackEntity backpack : PowerfulBackpacks.getInstance().getCraftManager().getRegisteredBackpacks().values()) {
-            Component formattedLine = messagePattern.replaceText(TextReplacementConfig.builder()
-                            .match("%backpack_name%")
-                            .replacement(StringUtils.format(backpack.name()))
-                    .build());
-
-            formattedLine = formattedLine.replaceText(TextReplacementConfig.builder()
-                    .match("%backpack%")
-                    .replacement(StringUtils.format(backpack.key()))
-                    .build());
-
-            player.sendMessage(formattedLine);
+            player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("list_command_items_message", new BackpackPlaceholder(backpack)));
         }
 
         return true;
