@@ -15,6 +15,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.*;
 
+//TODO: REFATORAR LOAD RECIPES!
 public class CraftManager {
     final Plugin plugin;
     @Getter

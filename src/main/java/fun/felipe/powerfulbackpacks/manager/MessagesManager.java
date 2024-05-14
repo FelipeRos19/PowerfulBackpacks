@@ -4,13 +4,18 @@ import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
 import fun.felipe.powerfulbackpacks.entities.BackpackEntity;
 import fun.felipe.powerfulbackpacks.placeholder.Placeholder;
 import fun.felipe.powerfulbackpacks.placeholder.implementations.BackpackPlaceholder;
+import fun.felipe.powerfulbackpacks.placeholder.implementations.ItemPlaceholder;
 import fun.felipe.powerfulbackpacks.placeholder.implementations.MessagePlaceholder;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
+import fun.felipe.powerfulbackpacks.utils.items.PersistentDataUtils;
+import fun.felipe.powerfulbackpacks.utils.items.SerializationUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextReplacementConfig;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.intellij.lang.annotations.RegExp;
 
@@ -96,6 +101,36 @@ public class MessagesManager {
 
             if (param instanceof BackpackPlaceholder backpack) {
                 return StringUtils.format(String.valueOf(backpack.getPlaceholder().rows() * 9));
+            }
+
+            return StringUtils.format("<red>Placeholder type error!");
+        });
+        this.placeholders.put("%backpack_count_items%", (param) -> {
+            if (param instanceof MessagePlaceholder message) {
+                return StringUtils.format(message.getPlaceholder());
+            }
+
+            if (param instanceof BackpackPlaceholder) {
+                return StringUtils.format("<red>Not implemented!");
+            }
+
+            if (param instanceof ItemPlaceholder item) {
+                if (!PersistentDataUtils.hasData(item.getPlaceholder(), "content")) return StringUtils.format("<red>Placeholder Item Error!");
+                String serializedContent = PersistentDataUtils.getStringData(item.getPlaceholder(), "content");
+                Inventory inventoryContent;
+
+                if (serializedContent.isEmpty())
+                    return StringUtils.format("0");
+                else
+                    inventoryContent = SerializationUtils.inventoryFromBase64(serializedContent);
+
+                int count = 0;
+                for (ItemStack itemStack : inventoryContent.getContents()) {
+                    if (itemStack == null) continue;
+                    count+= itemStack.getAmount();
+                }
+
+                return StringUtils.format(String.valueOf(count));
             }
 
             return StringUtils.format("<red>Placeholder type error!");
