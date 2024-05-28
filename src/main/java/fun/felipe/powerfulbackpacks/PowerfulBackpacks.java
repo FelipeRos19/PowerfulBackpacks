@@ -1,8 +1,10 @@
 package fun.felipe.powerfulbackpacks;
 
+import fun.felipe.Updater;
 import fun.felipe.powerfulbackpacks.commands.BackpackCommand;
 import fun.felipe.powerfulbackpacks.events.*;
 import fun.felipe.powerfulbackpacks.manager.CraftManager;
+import fun.felipe.powerfulbackpacks.manager.LanguageManager;
 import fun.felipe.powerfulbackpacks.manager.MessagesManager;
 import fun.felipe.powerfulbackpacks.utils.Metrics;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
@@ -26,6 +28,9 @@ public final class PowerfulBackpacks extends JavaPlugin {
         // Plugin startup logic
         instance = this;
         registers();
+
+        if (!Updater.verification("powerfulbackpacks", this.getPluginMeta().getVersion()))
+            this.getLogger().warning("there is a new version available! (https://modrinth.com/plugin/powerfulbackpacks)");
         Bukkit.getConsoleSender().sendMessage(StringUtils.format("<green>[PowerfulBackpacks] has been started successfully!"));
     }
 
@@ -40,9 +45,12 @@ public final class PowerfulBackpacks extends JavaPlugin {
         saveDefaultConfig();
         commands();
         events();
+
         new Metrics(this, 21797);
+
         this.messagesManager = new MessagesManager(this);
         this.craftManager = new CraftManager(this);
+
         String permission = this.getConfig().getString("Permission");
         if (permission == null) permission = "powerfulbackpacks.use";
         this.pluginPermission = permission;
