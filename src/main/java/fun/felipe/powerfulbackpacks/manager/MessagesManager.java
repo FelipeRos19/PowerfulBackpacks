@@ -12,7 +12,6 @@ import fun.felipe.powerfulbackpacks.utils.items.SerializationUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextReplacementConfig;
 import net.kyori.adventure.text.format.TextDecoration;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -34,14 +33,14 @@ public class MessagesManager {
         this.plugin = plugin;
         this.messages = new HashMap<>();
         this.placeholders = new HashMap<>();
-        loadMessages();
-        registerPlaceholders();
+        this.loadMessages();
+        this.registerPlaceholders();
     }
 
     private void loadMessages() {
-        Bukkit.getConsoleSender().sendMessage(StringUtils.format("<green>[PowerfulBackpacks] Starting the process of loading the messages!"));
+        this.plugin.getLogger().info("Starting the messages loading process");
 
-        ConfigurationSection messagesSection = this.plugin.getConfig().getConfigurationSection("Messages");
+        ConfigurationSection messagesSection = PowerfulBackpacks.getInstance().getLanguageManager().getPluginLanguageFile().getFileConfiguration().getConfigurationSection("Messages");
         if (messagesSection == null) {
             this.plugin.getLogger().severe("Messages not found in Config!");
             this.plugin.getServer().getPluginManager().disablePlugin(this.plugin);
@@ -108,10 +107,6 @@ public class MessagesManager {
         this.placeholders.put("%backpack_count_items%", (param) -> {
             if (param instanceof MessagePlaceholder message) {
                 return StringUtils.format(message.getPlaceholder());
-            }
-
-            if (param instanceof BackpackPlaceholder) {
-                return StringUtils.format("<red>Not implemented!");
             }
 
             if (param instanceof ItemPlaceholder item) {

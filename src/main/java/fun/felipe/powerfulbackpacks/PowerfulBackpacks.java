@@ -19,6 +19,8 @@ public final class PowerfulBackpacks extends JavaPlugin {
     @Getter
     private CraftManager craftManager;
     @Getter
+    private LanguageManager languageManager;
+    @Getter
     private MessagesManager messagesManager;
     @Getter
     private String pluginPermission;
@@ -48,6 +50,7 @@ public final class PowerfulBackpacks extends JavaPlugin {
 
         new Metrics(this, 21797);
 
+        this.languageManager = new LanguageManager(this);
         this.messagesManager = new MessagesManager(this);
         this.craftManager = new CraftManager(this);
 
