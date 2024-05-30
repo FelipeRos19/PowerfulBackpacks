@@ -2,7 +2,6 @@ package fun.felipe.powerfulbackpacks.manager;
 
 import fun.felipe.powerfulbackpacks.utils.LanguageFile;
 import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
@@ -15,7 +14,6 @@ public class LanguageManager {
     private final Map<String, LanguageFile> languages;
     private final File langFolder;
     @Getter
-    @Setter
     private String pluginLanguage;
     @Getter
     private LanguageFile pluginLanguageFile;
@@ -38,7 +36,7 @@ public class LanguageManager {
     }
 
     private void registerLanguages() {
-        this.plugin.getLogger().info("Starting the language loading process.");
+        this.plugin.getLogger().info("Starting language loading process.");
         File[] files = (this.langFolder != null) ? this.langFolder.listFiles() : null;
         if (files == null) return;
 
@@ -50,7 +48,7 @@ public class LanguageManager {
             this.plugin.getLogger().info("Language " + file.getName() + " successfully registered!");
         }
 
-        this.plugin.getLogger().info("Finishing the language loading process.");
+        this.plugin.getLogger().info("Finishing language loading process.");
     }
 
     private void definePluginLanguage() {
