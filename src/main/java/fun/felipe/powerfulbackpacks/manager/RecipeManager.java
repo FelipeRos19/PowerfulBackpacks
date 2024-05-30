@@ -22,6 +22,7 @@ public class RecipeManager {
     private final Map<String, BackpackEntity> registeredBackpacks;
     @Getter
     private final Map<String, RecipeEntity> backpackRecipes;
+    @Getter
     private final Map<String, List<String>> backpackLore;
     private final List<String> WILDCARDS = List.of("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
 
@@ -163,8 +164,6 @@ public class RecipeManager {
                 }
             }
 
-
-            Arrays.asList(backpackShapeResult).forEach(System.out::println);
             this.backpackRecipes.put(backpack, new RecipeEntity(backpackShapeResult, backpackItem));
         }
 
