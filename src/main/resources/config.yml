@@ -42,3 +42,25 @@ Backpacks:
       items:
         I: 'IRON_INGOT'
         $: 'basic_backpack'
+  ultimate_backpack:
+    name: '<gold><bold>Ultimate Backpack'
+    lore:
+      - ''
+      - '<grey>Its a <gold><bold>Ultimate Backpack'
+      - ''
+      - '<grey>Rows: <gold><bold>%backpack_rows%'
+      - '<grey>Slots: <gold><bold>%backpack_slots%'
+    rows: 6
+    model_data: 0
+    craft:
+      shape:
+        - 'D1D'
+        - 'D$D'
+        - 'D1D'
+      items:
+        D: 'DIAMOND'
+        $: 'reinforced_backpack'
+        1:
+          name: '<grey>Custom Item!' #Leave blank if the item don't have a custom name!
+          type: 'DIAMOND'
+          amount: 1

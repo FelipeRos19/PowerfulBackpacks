@@ -22,7 +22,7 @@ public class CraftPrepareListener implements Listener {
     @EventHandler
     public void onCraftInteract(PrepareItemCraftEvent event) {
         if (!event.getInventory().getType().equals(InventoryType.WORKBENCH)) return;
-        RecipeEntity recipe = PowerfulBackpacks.getInstance().getCraftManager().isCustomCraft(event.getInventory().getMatrix());
+        RecipeEntity recipe = PowerfulBackpacks.getInstance().getRecipeManager().isCustomCraft(event.getInventory().getMatrix());
         if (recipe == null) return;
 
         ItemStack bundle = null;

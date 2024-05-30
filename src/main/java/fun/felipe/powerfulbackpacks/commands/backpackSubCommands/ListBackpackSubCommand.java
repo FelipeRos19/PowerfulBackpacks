@@ -20,7 +20,7 @@ public class ListBackpackSubCommand implements SubCommand {
         Component messageHeader = PowerfulBackpacks.getInstance().getMessagesManager().createMessage("list_command_message", new MessagePlaceholder(""));
         player.sendMessage(messageHeader);
 
-        for (BackpackEntity backpack : PowerfulBackpacks.getInstance().getCraftManager().getRegisteredBackpacks().values()) {
+        for (BackpackEntity backpack : PowerfulBackpacks.getInstance().getRecipeManager().getRegisteredBackpacks().values()) {
             player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("list_command_items_message", new BackpackPlaceholder(backpack)));
         }
     }

@@ -38,7 +38,7 @@ public class MessagesManager {
     }
 
     private void loadMessages() {
-        this.plugin.getLogger().info("Starting the messages loading process");
+        this.plugin.getLogger().info("Starting messages loading process.");
 
         ConfigurationSection messagesSection = PowerfulBackpacks.getInstance().getLanguageManager().getPluginLanguageFile().getFileConfiguration().getConfigurationSection("Messages");
         if (messagesSection == null) {
@@ -56,6 +56,8 @@ public class MessagesManager {
 
             this.messages.put(key, message);
         }
+
+        this.plugin.getLogger().info("Finishing message loading process.");
     }
 
     private void registerPlaceholders() {
@@ -149,12 +151,12 @@ public class MessagesManager {
         return formattedMessage;
     }
 
-    public List<Component> createLore(BackpackEntity backpack) {
+    public List<Component> createLore(BackpackEntity backpack, List<String> lore) {
         List<Component> formattedLore = new ArrayList<>();
-        if (backpack.lore().isEmpty())
+        if (lore.isEmpty())
             return formattedLore;
 
-        for (String line : backpack.lore()) {
+        for (String line : lore) {
             for (@RegExp String key : this.placeholders.keySet()) {
                 Component formattedLine = StringUtils.format(line);
                 if (!line.contains(key)) continue;

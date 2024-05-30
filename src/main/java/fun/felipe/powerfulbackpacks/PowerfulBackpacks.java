@@ -3,9 +3,9 @@ package fun.felipe.powerfulbackpacks;
 import fun.felipe.Updater;
 import fun.felipe.powerfulbackpacks.commands.BackpackCommand;
 import fun.felipe.powerfulbackpacks.events.*;
-import fun.felipe.powerfulbackpacks.manager.CraftManager;
 import fun.felipe.powerfulbackpacks.manager.LanguageManager;
 import fun.felipe.powerfulbackpacks.manager.MessagesManager;
+import fun.felipe.powerfulbackpacks.manager.RecipeManager;
 import fun.felipe.powerfulbackpacks.utils.Metrics;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
 import lombok.Getter;
@@ -17,11 +17,11 @@ public final class PowerfulBackpacks extends JavaPlugin {
     @Getter
     private static PowerfulBackpacks instance;
     @Getter
-    private CraftManager craftManager;
-    @Getter
     private LanguageManager languageManager;
     @Getter
     private MessagesManager messagesManager;
+    @Getter
+    private RecipeManager recipeManager;
     @Getter
     private String pluginPermission;
 
@@ -52,7 +52,7 @@ public final class PowerfulBackpacks extends JavaPlugin {
 
         this.languageManager = new LanguageManager(this);
         this.messagesManager = new MessagesManager(this);
-        this.craftManager = new CraftManager(this);
+        this.recipeManager = new RecipeManager(this);
 
         String permission = this.getConfig().getString("Permission");
         if (permission == null) permission = "powerfulbackpacks.use";
