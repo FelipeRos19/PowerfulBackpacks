@@ -31,5 +31,8 @@ public class PlayerInventoryListener implements Listener {
         if (!(event.getInventory().getHolder() instanceof BackpackGUI backpack)) return;
         String contentSerialized = SerializationUtils.inventoryToBase64(backpack.getInventory());
         PersistentDataUtils.addStringData(backpack.getBackpack(), "content", contentSerialized);
+
+        String backpackType = PersistentDataUtils.getStringData(backpack.getBackpack(), "type");
+
     }
 }

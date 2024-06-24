@@ -15,6 +15,7 @@ import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.intellij.lang.annotations.RegExp;
 
@@ -151,7 +152,7 @@ public class MessagesManager {
         return formattedMessage;
     }
 
-    public List<Component> createLore(BackpackEntity backpack, List<String> lore) {
+    public List<Component> createLore(BackpackEntity backpackEntity, List<String> lore) {
         List<Component> formattedLore = new ArrayList<>();
         if (lore.isEmpty())
             return formattedLore;
@@ -160,7 +161,7 @@ public class MessagesManager {
             for (@RegExp String key : this.placeholders.keySet()) {
                 Component formattedLine = StringUtils.format(line);
                 if (!line.contains(key)) continue;
-                Component placeholder = this.placeholders.get(key).apply(new BackpackPlaceholder(backpack));
+                Component placeholder = this.placeholders.get(key).apply(new BackpackPlaceholder(backpackEntity));
                 formattedLine = formattedLine.replaceText(TextReplacementConfig.builder()
                         .match(key)
                         .replacement(placeholder)
