@@ -21,7 +21,18 @@ public class PlayerInventoryListener implements Listener {
     @EventHandler
     public void onPlayerInventoryInteract(InventoryClickEvent event) {
         if (event.getClickedInventory() == null) return;
-        if (!event.getClick().isRightClick()) return;
+        if (!event.getClick().isRightClick()) {
+
+            if (event.getInventory().getHolder() instanceof BackpackGUI backpack) {
+                if (event.getCurrentItem() != null && event.getCurrentItem().equals(backpack.getBackpack())) {
+                    plugin.getLogger().warning(event.getWhoClicked().getName() + " tries to put a backpack inside itself");
+                    event.setCancelled(true);
+                    return;
+                }
+            }
+
+            return;
+        }
         if (event.getCurrentItem() == null) return;
         if (event.getCurrentItem().getType().equals(Material.BUNDLE)) event.setCancelled(true);
     }
