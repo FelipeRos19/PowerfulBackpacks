@@ -1,9 +1,7 @@
 package fun.felipe.powerfulbackpacks.commands;
 
 import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
-import fun.felipe.powerfulbackpacks.commands.backpackSubCommands.GiveBackpackSubCommand;
-import fun.felipe.powerfulbackpacks.commands.backpackSubCommands.ListBackpackSubCommand;
-import fun.felipe.powerfulbackpacks.placeholder.implementations.MessagePlaceholder;
+import fun.felipe.powerfulbackpacks.old.placeholder.implementations.MessagePlaceholder;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

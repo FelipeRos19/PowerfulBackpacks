@@ -1,10 +1,10 @@
-package fun.felipe.powerfulbackpacks.manager;
+package fun.felipe.powerfulbackpacks.old.manager;
 
 import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
-import fun.felipe.powerfulbackpacks.entities.BackpackEntity;
-import fun.felipe.powerfulbackpacks.placeholder.Placeholder;
-import fun.felipe.powerfulbackpacks.placeholder.implementations.BackpackPlaceholder;
-import fun.felipe.powerfulbackpacks.placeholder.implementations.MessagePlaceholder;
+import fun.felipe.powerfulbackpacks.old.entities.BackpackEntity;
+import fun.felipe.powerfulbackpacks.old.placeholder.Placeholder;
+import fun.felipe.powerfulbackpacks.old.placeholder.implementations.BackpackPlaceholder;
+import fun.felipe.powerfulbackpacks.old.placeholder.implementations.MessagePlaceholder;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextReplacementConfig;

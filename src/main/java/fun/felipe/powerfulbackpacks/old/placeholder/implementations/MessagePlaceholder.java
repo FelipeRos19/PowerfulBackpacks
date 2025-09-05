@@ -1,6 +1,6 @@
-package fun.felipe.powerfulbackpacks.placeholder.implementations;
+package fun.felipe.powerfulbackpacks.old.placeholder.implementations;
 
-import fun.felipe.powerfulbackpacks.placeholder.Placeholder;
+import fun.felipe.powerfulbackpacks.old.placeholder.Placeholder;
 
 public class MessagePlaceholder extends Placeholder<String> {
     public MessagePlaceholder(String placeholder) {

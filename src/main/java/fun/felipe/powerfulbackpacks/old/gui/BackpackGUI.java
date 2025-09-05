@@ -1,4 +1,4 @@
-package fun.felipe.powerfulbackpacks.gui;
+package fun.felipe.powerfulbackpacks.old.gui;
 
 import lombok.Getter;
 import net.kyori.adventure.text.Component;

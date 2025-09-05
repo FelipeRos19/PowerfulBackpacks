@@ -1,4 +1,4 @@
-package fun.felipe.powerfulbackpacks.placeholder;
+package fun.felipe.powerfulbackpacks.old.placeholder;
 
 import lombok.Getter;
 

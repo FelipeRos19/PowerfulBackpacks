@@ -1,8 +1,6 @@
-package fun.felipe.powerfulbackpacks.events;
+package fun.felipe.powerfulbackpacks.old.events;
 
-import fun.felipe.powerfulbackpacks.gui.BackpackGUI;
-import fun.felipe.powerfulbackpacks.utils.items.PersistentDataUtils;
-import fun.felipe.powerfulbackpacks.utils.items.SerializationUtils;
+import fun.felipe.powerfulbackpacks.old.gui.BackpackGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;

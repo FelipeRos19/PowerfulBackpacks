@@ -1,4 +1,4 @@
-package fun.felipe.powerfulbackpacks.interfaces;
+package fun.felipe.powerfulbackpacks.commands;
 
 import org.bukkit.entity.Player;
 

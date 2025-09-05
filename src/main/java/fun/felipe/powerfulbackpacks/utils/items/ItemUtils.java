@@ -13,7 +13,7 @@ public class ItemUtils {
     public static ItemStack createBundleItemStack(Material type, String name, List<Component> lore) {
         ItemStack itemStack = new ItemStack(type);
         BundleMeta bundleMeta = (BundleMeta) itemStack.getItemMeta();
-        bundleMeta.addItemFlags(ItemFlag.HIDE_ITEM_SPECIFICS);
+        bundleMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
         bundleMeta.displayName(StringUtils.formatItemName(name));
         bundleMeta.lore(lore);
         itemStack.setItemMeta(bundleMeta);

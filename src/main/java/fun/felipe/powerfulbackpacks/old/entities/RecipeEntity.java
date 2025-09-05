@@ -1,4 +1,4 @@
-package fun.felipe.powerfulbackpacks.entities;
+package fun.felipe.powerfulbackpacks.old.entities;
 
 import org.bukkit.inventory.ItemStack;
 

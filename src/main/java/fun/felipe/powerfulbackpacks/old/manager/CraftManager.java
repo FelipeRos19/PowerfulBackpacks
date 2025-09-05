@@ -1,11 +1,9 @@
-package fun.felipe.powerfulbackpacks.manager;
+package fun.felipe.powerfulbackpacks.old.manager;
 
 import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
-import fun.felipe.powerfulbackpacks.entities.BackpackEntity;
-import fun.felipe.powerfulbackpacks.entities.RecipeEntity;
+import fun.felipe.powerfulbackpacks.old.entities.BackpackEntity;
+import fun.felipe.powerfulbackpacks.old.entities.RecipeEntity;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
-import fun.felipe.powerfulbackpacks.utils.items.ItemUtils;
-import fun.felipe.powerfulbackpacks.utils.items.PersistentDataUtils;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

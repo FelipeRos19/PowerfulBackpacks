@@ -1,4 +1,4 @@
-package fun.felipe.powerfulbackpacks.events;
+package fun.felipe.powerfulbackpacks.old.events;
 
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
