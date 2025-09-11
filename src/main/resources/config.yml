@@ -1,6 +1,8 @@
 #To decorate the texts you need to use AdventureAPI MiniMessages! (Wiki: https://docs.advntr.dev/minimessage/index.html)
 #To define the materials for crafting, you must follow the updated item pattern! Example: 'LEATHER' 'STONE' 'DIAMOND'.
 #To define a backpack when creating, use the special character '$' and in the list of 'items' pass the ID of that backpack as a parameter!
+#Messages Section was moved to Messages.yml file.
+#Original Backpack resource pack is hosted in ..., if necessary may be edited. You can merge into already existing server pack.
 
 #List of Placeholders:
 # - %permission% = command permission
@@ -11,14 +13,13 @@
 
 Permission: 'powerfulbackpacks.use' #If this field is not filled in, the permission will be "powerfullbackpacks.use"
 
-Messages:
-  dont_have_permission: '<red>You do not have Permission! (%permission%)'
-  not_found: "<red>Backpack was not found! (%backpack%)"
-  backpack_command_usage: '<yellow>Use: /backpack <give/list>.'
-  give_command_usage: '<yellow>Use: /backpack give <backpack_id>'
-  give_command_success: '<green>Backpack %backpack_name% received Successfully!'
-  list_command_message: '<green>List of Backpacks:'
-  list_command_items_message: '<green> - %backpack_name% (%backpack%)' #Only command with placeholders!
+Features:
+  ResourcePack:
+    enable: true
+    #This option exists case server has a custom texture and will be merge the backpacks texture in to.
+    hasCustomTexture: false  #FALSE = Your server don't have a custom resource pack | TRUE = Your server have a custom resource pack and you not use backpacks custom resource provider.
+    url: '...' #If this field is not filled in, the URL will be "...",
+
 
 Backpacks:
   basic_backpack: #ID of Backpack (use sneak_case in the backpack identifier!)
