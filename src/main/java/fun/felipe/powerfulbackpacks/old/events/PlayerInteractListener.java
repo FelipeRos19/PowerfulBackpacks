@@ -19,6 +19,7 @@ public class PlayerInteractListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
+        /*
         if (event.getItem() == null) return;
         if (!event.getPlayer().getInventory().getItemInMainHand().getType().equals(Material.BUNDLE)) return;
         if (!event.getAction().isRightClick()) return;
@@ -34,5 +35,7 @@ public class PlayerInteractListener implements Listener {
         int backpackRows = PersistentDataUtils.getIntData(event.getItem(), "rows");
 
         event.getPlayer().openInventory(new BackpackGUI(event.getItem().getItemMeta().displayName(), backpackRows * 9, event.getItem(), inventoryContent).getInventory());
+
+         */
     }
 }

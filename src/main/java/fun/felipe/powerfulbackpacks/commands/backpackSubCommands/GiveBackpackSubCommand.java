@@ -1,16 +1,18 @@
 package fun.felipe.powerfulbackpacks.commands.backpackSubCommands;
 
 import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
+import fun.felipe.powerfulbackpacks.commands.SubCommand;
 import fun.felipe.powerfulbackpacks.old.entities.BackpackEntity;
-import fun.felipe.powerfulbackpacks.old.interfaces.SubCommand;
 import fun.felipe.powerfulbackpacks.old.placeholder.implementations.MessagePlaceholder;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+//TODO: ARRUMAR TUDO!
 public class GiveBackpackSubCommand implements SubCommand {
 
     @Override
     public void onCommand(Player player, String[] args) {
+        /*
         if (args.length != 2) {
             player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("give_command_usage", new MessagePlaceholder("")));
             return;
@@ -26,5 +28,6 @@ public class GiveBackpackSubCommand implements SubCommand {
         player.getInventory().addItem(backpackItemStack);
         BackpackEntity backpack = PowerfulBackpacks.getInstance().getCraftManager().getRegisteredBackpacks().get(args[1]);
         player.sendMessage(PowerfulBackpacks.getInstance().getMessagesManager().createMessage("give_command_success", new MessagePlaceholder(backpack.name())));
+         */
     }
 }

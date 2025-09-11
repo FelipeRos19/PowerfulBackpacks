@@ -1,6 +1,5 @@
 package fun.felipe.powerfulbackpacks.old.gui;
 
-import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
@@ -10,7 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class BackpackGUI implements InventoryHolder {
     private final Inventory inventory;
-    @Getter
     private final ItemStack backpack;
 
     public BackpackGUI(Component title, int slots, ItemStack itemStack, Inventory content) {
@@ -27,5 +25,9 @@ public class BackpackGUI implements InventoryHolder {
     @Override
     public @NotNull Inventory getInventory() {
         return this.inventory;
+    }
+
+    public ItemStack getBackpack() {
+        return backpack;
     }
 }

@@ -18,6 +18,7 @@ public class PlayerInventoryListener implements Listener {
 
     @EventHandler
     public void onPlayerInventoryInteract(InventoryClickEvent event) {
+        /*
         if (event.getClickedInventory() == null) return;
         if (!event.getClick().isRightClick()) {
 
@@ -33,12 +34,15 @@ public class PlayerInventoryListener implements Listener {
         }
         if (event.getCurrentItem() == null) return;
         if (event.getCurrentItem().getType().equals(Material.BUNDLE)) event.setCancelled(true);
+         */
     }
 
     @EventHandler
     public void onPlayerCloseInventory(InventoryCloseEvent event) {
+        /*
         if (!(event.getInventory().getHolder() instanceof BackpackGUI backpack)) return;
         String contentSerialized = SerializationUtils.inventoryToBase64(backpack.getInventory());
         PersistentDataUtils.addStringData(backpack.getBackpack(), "content", contentSerialized);
+         */
     }
 }
