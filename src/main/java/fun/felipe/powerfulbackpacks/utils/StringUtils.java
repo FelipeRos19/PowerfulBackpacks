@@ -5,6 +5,9 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class StringUtils {
 
@@ -14,6 +17,15 @@ public class StringUtils {
 
     public static Component formatItemName(String nameInput) {
         return format(nameInput).decoration(TextDecoration.ITALIC, false);
+    }
+
+    public static List<Component> formatItemLore(List<String> itemLore) {
+        List<Component> lore = new ArrayList<>();
+        for (String line : itemLore) {
+            lore.add(format(line));
+        }
+
+        return lore;
     }
 
     public static String strip(Component component) {

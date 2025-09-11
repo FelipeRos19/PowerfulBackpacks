@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 public class MessagesManager {
+    /*
     final Plugin plugin;
     private final Map<String, String> messages;
     private final Map<String, Function<Placeholder<?>, Component>> placeholders;
@@ -140,4 +141,5 @@ public class MessagesManager {
 
         return formattedLore;
     }
+     */
 }

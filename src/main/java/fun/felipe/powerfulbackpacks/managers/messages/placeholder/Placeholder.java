@@ -1,17 +1,21 @@
 package fun.felipe.powerfulbackpacks.managers.messages.placeholder;
 
-import net.kyori.adventure.text.Component;
-
 public abstract class Placeholder<T> {
-    private final T placeholder;
+    private final String regexKey;
+    private final T replacement;
 
-    public Placeholder(T placeholder) {
-        this.placeholder = placeholder;
+    public Placeholder(String regexKey, T replacement) {
+        this.regexKey = regexKey;
+        this.replacement = replacement;
     }
 
-    public T getPlaceholder() {
-        return placeholder;
+    public T getReplacement() {
+        return replacement;
     }
 
-    public abstract Component replace();
+    public String getRegexKey() {
+        return regexKey;
+    }
+
+    public abstract String replace(String message);
 }
