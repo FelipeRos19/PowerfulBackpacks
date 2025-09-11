@@ -1,7 +1,11 @@
 package fun.felipe.powerfulbackpacks;
 
-import fun.felipe.powerfulbackpacks.old.commands.BackpackCommand;
-import fun.felipe.powerfulbackpacks.old.events.*;
+import de.tr7zw.changeme.nbtapi.NBT;
+import fun.felipe.powerfulbackpacks.commands.BackpackCommand;
+import fun.felipe.powerfulbackpacks.commands.TestCommand;
+import fun.felipe.powerfulbackpacks.managers.items.ItemFile;
+import fun.felipe.powerfulbackpacks.managers.messages.MessageFile;
+import fun.felipe.powerfulbackpacks.managers.messages.MessageManager;
 import fun.felipe.powerfulbackpacks.utils.Metrics;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
 import org.bukkit.Bukkit;
@@ -9,13 +13,14 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PowerfulBackpacks extends JavaPlugin {
+
     private static PowerfulBackpacks instance;
+    private MessageFile messageFile;
+    private MessageManager messageManager;
+    private ItemFile itemFile;
     /*
     @Getter
     private CraftManager craftManager;
-    @Getter
-    private MessagesManager messagesManager;
-    @Getter
      */
     private String pluginPermission;
 
@@ -25,6 +30,11 @@ public final class PowerfulBackpacks extends JavaPlugin {
         instance = this;
         registers();
         Bukkit.getConsoleSender().sendMessage(StringUtils.format("<green>[PowerfulBackpacks] has been started successfully!"));
+
+        if (!NBT.preloadApi()) {
+            System.out.println("KRL DEU MERDA AQUI EM!");
+            this.getServer().getPluginManager().disablePlugin(this);
+        }
     }
 
     @Override
@@ -39,22 +49,25 @@ public final class PowerfulBackpacks extends JavaPlugin {
         commands();
         events();
         new Metrics(this, 21797);
-        //this.messagesManager = new MessagesManager(this);
-        //this.craftManager = new CraftManager(this);
+
         String permission = this.getConfig().getString("Permission");
         if (permission == null) permission = "powerfulbackpacks.use";
         this.pluginPermission = permission;
+
+        this.messageFile = new MessageFile("messages.yml", this);
+        this.messageManager = new MessageManager(instance);
+
+        this.itemFile = new ItemFile("items.yml", this);
+
+        //this.craftManager = new CraftManager(this);
     }
 
     private void commands() {
         new BackpackCommand(this);
+        new TestCommand(this);
     }
 
     private void events() {
-        new PlayerInteractListener(this);
-        new AnvilPrepareListener(this);
-        new PlayerInventoryListener(this);
-        new CraftPrepareListener(this);
     }
 
     public static PowerfulBackpacks getInstance() {
@@ -62,6 +75,18 @@ public final class PowerfulBackpacks extends JavaPlugin {
     }
 
     public String getPluginPermission() {
-        return pluginPermission;
+        return this.pluginPermission;
+    }
+
+    public MessageManager getMessageManager() {
+        return this.messageManager;
+    }
+
+    public MessageFile getMessageFile() {
+        return this.messageFile;
+    }
+
+    public ItemFile getItemFile() {
+        return this.itemFile;
     }
 }

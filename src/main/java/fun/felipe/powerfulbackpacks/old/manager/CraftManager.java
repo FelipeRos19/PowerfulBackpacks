@@ -4,7 +4,6 @@ import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
 import fun.felipe.powerfulbackpacks.old.entities.BackpackEntity;
 import fun.felipe.powerfulbackpacks.old.entities.RecipeEntity;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
-import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -14,6 +13,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.*;
 
 public class CraftManager {
+    /*
     final Plugin plugin;
     @Getter
     private final List<RecipeEntity> backpackRecipes;
@@ -149,4 +149,5 @@ public class CraftManager {
         }
         return null;
     }
+     */
 }
