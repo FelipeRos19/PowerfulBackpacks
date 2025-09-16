@@ -4,6 +4,7 @@ import de.tr7zw.changeme.nbtapi.NBT;
 import fun.felipe.powerfulbackpacks.commands.BackpackCommand;
 import fun.felipe.powerfulbackpacks.commands.TestCommand;
 import fun.felipe.powerfulbackpacks.managers.items.ItemFile;
+import fun.felipe.powerfulbackpacks.managers.items.ItemManager;
 import fun.felipe.powerfulbackpacks.managers.messages.MessageFile;
 import fun.felipe.powerfulbackpacks.managers.messages.MessageManager;
 import fun.felipe.powerfulbackpacks.utils.Metrics;
@@ -18,6 +19,7 @@ public final class PowerfulBackpacks extends JavaPlugin {
     private MessageFile messageFile;
     private MessageManager messageManager;
     private ItemFile itemFile;
+    private ItemManager itemManager;
     /*
     @Getter
     private CraftManager craftManager;
@@ -58,6 +60,7 @@ public final class PowerfulBackpacks extends JavaPlugin {
         this.messageManager = new MessageManager(instance);
 
         this.itemFile = new ItemFile("items.yml", this);
+        this.itemManager = new ItemManager(instance);
 
         //this.craftManager = new CraftManager(this);
     }
