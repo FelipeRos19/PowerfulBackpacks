@@ -6,6 +6,7 @@ Items:
       - '<grey>Its a Sewing Kit'
       - ''
     material: 'PAPER'
+    texture: 'powerfulbackpacks:kit_costura_item'
     craft:
       shape:
         - '   '

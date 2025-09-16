@@ -1,5 +1,6 @@
 package fun.felipe.powerfulbackpacks.utils.items;
 
+import de.tr7zw.changeme.nbtapi.NBT;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -30,6 +31,21 @@ public class ItemUtils {
         itemMeta.lore(StringUtils.formatItemLore(lore));
         itemStack.setItemMeta(itemMeta);
         PersistentDataUtils.addStringData(itemStack, "custom-item", itemID);
+        return itemStack;
+    }
+
+    public static ItemStack createCustomItem(Material type, String name, List<String> lore, String textureKey, String itemID) {
+        ItemStack itemStack = new ItemStack(type);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.displayName(StringUtils.formatItemName(name));
+        itemMeta.lore(StringUtils.formatItemLore(lore));
+        itemStack.setItemMeta(itemMeta);
+        PersistentDataUtils.addStringData(itemStack, "custom-item", itemID);
+
+
+        NBT.modifyComponents(itemStack, nbt -> {
+            nbt.setString("minecraft:item_model", textureKey);
+        });
         return itemStack;
     }
 }

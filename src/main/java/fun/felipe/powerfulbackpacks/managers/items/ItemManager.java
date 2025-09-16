@@ -51,7 +51,13 @@ public class ItemManager {
             if (itemMaterial == null)
                 itemMaterial = Material.PAPER;
 
-            ItemStack customItem = ItemUtils.createCustomItem(itemMaterial, itemName, itemLore, key);
+            ItemStack customItem;
+
+            String textureKey = internalItemSection.getString("texture");
+            if (textureKey == null || textureKey.isEmpty())
+                customItem = ItemUtils.createCustomItem(itemMaterial, itemName, itemLore, key);
+            else
+                customItem = ItemUtils.createCustomItem(itemMaterial, itemName, itemLore, textureKey, key);
 
             ConfigurationSection craftItemSection = internalItemSection.getConfigurationSection("craft");
             if (craftItemSection != null) {
