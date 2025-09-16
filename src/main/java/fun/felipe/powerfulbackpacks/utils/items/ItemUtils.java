@@ -12,6 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.List;
 
 public class ItemUtils {
+
     public static ItemStack createBundleItemStack(Material type, String name, List<Component> lore) {
         ItemStack itemStack = new ItemStack(type);
         BundleMeta bundleMeta = (BundleMeta) itemStack.getItemMeta();
@@ -19,6 +20,16 @@ public class ItemUtils {
         bundleMeta.displayName(StringUtils.formatItemName(name));
         bundleMeta.lore(lore);
         itemStack.setItemMeta(bundleMeta);
+        return itemStack;
+    }
+
+    public static ItemStack createCustomItem(Material type, String name, List<String> lore, String itemID) {
+        ItemStack itemStack = new ItemStack(type);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.displayName(StringUtils.formatItemName(name));
+        itemMeta.lore(StringUtils.formatItemLore(lore));
+        itemStack.setItemMeta(itemMeta);
+        PersistentDataUtils.addStringData(itemStack, "custom-item", itemID);
         return itemStack;
     }
 }

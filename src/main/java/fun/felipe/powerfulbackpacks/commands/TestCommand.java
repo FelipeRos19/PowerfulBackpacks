@@ -1,6 +1,5 @@
 package fun.felipe.powerfulbackpacks.commands;
 
-import fun.felipe.powerfulbackpacks.managers.items.implementation.SewingKitItem;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -25,7 +24,6 @@ public class TestCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String string, @NotNull String @NotNull [] args) {
         if (!(sender instanceof Player player)) return false;
 
-        player.getInventory().addItem(new SewingKitItem("<red>teste", Collections.emptyList(), Material.PAPER).createItemStack());
 
         return true;
     }

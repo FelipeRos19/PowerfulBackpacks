@@ -1,91 +1,95 @@
 package fun.felipe.powerfulbackpacks.managers.items;
 
 import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
-import fun.felipe.powerfulbackpacks.managers.items.entities.LoadItemConfig;
-import fun.felipe.powerfulbackpacks.managers.items.implementation.SewingKitItem;
-import fun.felipe.powerfulbackpacks.managers.items.interfaces.GenericItem;
+import fun.felipe.powerfulbackpacks.utils.items.ItemUtils;
+import fun.felipe.powerfulbackpacks.utils.items.PersistentDataUtils;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
-import org.jetbrains.annotations.NotNull;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class ItemManager {
     private final PowerfulBackpacks plugin;
-    private final Map<String, LoadItemConfig> registeredItems;
+    private final Map<String, ItemStack> registeredItems;
 
     public ItemManager(PowerfulBackpacks plugin) {
         this.plugin = plugin;
         this.registeredItems = new HashMap<>();
+        this.loadItems();
     }
 
     private void loadItems() {
-        Optional<LoadItemConfig> sewingKit = this.loadItemFromConfig("sewing_kit");
-        sewingKit.ifPresent(config -> {
-            this.registeredItems.put("sewing_kit", config);
-        });
-    }
-
-    @NotNull
-    private Optional<LoadItemConfig> loadItemFromConfig(String itemKey) {
-        ConfigurationSection itemsSection = this.plugin.getItemFile().getFileConfiguration().getConfigurationSection("Items." + itemKey);
+        ConfigurationSection itemsSection = this.plugin.getItemFile().getFileConfiguration().getConfigurationSection("Items");
         if (itemsSection == null) {
-            this.plugin.getLogger().severe("Item file not found in Config!");
-            return Optional.empty();
+            this.plugin.getLogger().warning("[PowerfulBackpacks] Could not load items section!");
+            return;
         }
 
-        String itemName = itemsSection.getString("name");
-        if (itemName == null) {
-            this.plugin.getLogger().severe("Item name not found in Config!");
-            return Optional.empty();
-        }
-        List<String> itemLore =  itemsSection.getStringList("lore");
-        String materialString = itemsSection.getString("material");
-        if (materialString == null) {
-            this.plugin.getLogger().severe("Material not found in Config! (" + itemKey + ")");
-            return Optional.empty();
-        }
+        NamespacedKey customItemKey = PersistentDataUtils.buildKey("custom-item");
 
-        Material material =  Material.getMaterial(materialString);
-        if (material == null) {
-            this.plugin.getLogger().severe("Material invalid in Config! (" + itemKey + ")");
-            return Optional.empty();
-        }
-
-        ConfigurationSection craftSection = itemsSection.getConfigurationSection("craft");
-        if (craftSection == null) {
-            this.plugin.getLogger().severe("Craft section not found in Config!");
-            return Optional.empty();
-        }
-
-        List<String> craftShape = craftSection.getStringList("shape");
-        Map<Character, Material> craftMaterials = new HashMap<>();
-        if (!craftShape.isEmpty()) {
-            ConfigurationSection craftMaterialsSection = craftSection.getConfigurationSection("materials");
-            if (craftMaterialsSection != null) {
-                this.plugin.getLogger().severe("Material section not found in Config!");
-                for (String key : craftMaterialsSection.getKeys(false)) {
-                    String materialStringKey = craftMaterialsSection.getString(key);
-
-                    if (materialStringKey == null) {
-                        this.plugin.getLogger().severe("Material key not found in Config! (" + key + ")");
-                        return Optional.empty();
-                    }
-
-                    Material materialResult = Material.getMaterial(materialStringKey);
-                    if (materialResult == null) {
-                        this.plugin.getLogger().severe("Material invalid in Config! (" + key + ")");
-                        return Optional.empty();
-                    }
-
-                    craftMaterials.put(key.charAt(0), materialResult);
-                }
+        for (String key : itemsSection.getKeys(false)) {
+            ConfigurationSection internalItemSection  = itemsSection.getConfigurationSection(key);
+            if (internalItemSection == null) {
+                this.plugin.getLogger().warning("[PowerfulBackpacks] Could not load item " + key + " section!");
+                continue;
             }
-        }
 
-        return Optional.of(new LoadItemConfig(itemName, itemLore, material, craftShape, craftMaterials));
+            String itemName = internalItemSection.getString("name");
+
+            List<String> itemLore = internalItemSection.getStringList("lore");
+
+            String itemMaterialName =  internalItemSection.getString("material");
+            if (itemMaterialName == null)
+                itemMaterialName = "PAPER";
+
+            Material itemMaterial = Material.getMaterial(itemMaterialName);
+            if (itemMaterial == null)
+                itemMaterial = Material.PAPER;
+
+            ItemStack customItem = ItemUtils.createCustomItem(itemMaterial, itemName, itemLore, key);
+
+            ConfigurationSection craftItemSection = internalItemSection.getConfigurationSection("craft");
+            if (craftItemSection != null) {
+                List<String> shape = craftItemSection.getStringList("shape");
+                if (shape.size() != 3) {
+                    this.plugin.getLogger().severe("[PowerfulBackpacks] Could not load craft item.");
+                    continue;
+                }
+
+                ShapedRecipe recipe = new ShapedRecipe(customItemKey, customItem);
+                recipe.shape(shape.get(0), shape.get(1), shape.get(2));
+
+                ConfigurationSection craftMaterialSection = craftItemSection.getConfigurationSection("materials");
+                if (craftMaterialSection == null) {
+                    this.plugin.getLogger().severe("[PowerfulBackpacks] Could not load craft materials.");
+                    continue;
+                }
+
+                for (String materialKey : craftMaterialSection.getKeys(false)) {
+                    String materialName = craftMaterialSection.getString(materialKey);
+                    if (materialName == null) {
+                        this.plugin.getLogger().severe("[PowerfulBackpacks] Could not found craft material name.");
+                        continue;
+                    }
+                    Material material = Material.getMaterial(materialName);
+                    if (material == null) {
+                        this.plugin.getLogger().severe("[PowerfulBackpacks] Could not found craft material.");
+                        continue;
+                    }
+
+                    recipe.setIngredient(materialKey.charAt(0), material);
+                }
+
+                this.plugin.getServer().addRecipe(recipe);
+            }
+
+
+            this.registeredItems.put(key, customItem);
+        }
     }
 }

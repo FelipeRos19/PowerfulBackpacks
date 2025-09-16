@@ -9,7 +9,7 @@ Items:
     craft:
       shape:
         - '   '
-        - ' SA'
+        - 'SA '
         - '   '
       materials:
         S: 'SHEARS'

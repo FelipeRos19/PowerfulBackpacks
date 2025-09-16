@@ -22,7 +22,7 @@ public class StringUtils {
     public static List<Component> formatItemLore(List<String> itemLore) {
         List<Component> lore = new ArrayList<>();
         for (String line : itemLore) {
-            lore.add(format(line));
+            lore.add(formatItemName(line));
         }
 
         return lore;
