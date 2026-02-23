@@ -1,4 +1,4 @@
-package fun.felipe.powerfulbackpacks.managers.messages;
+package fun.felipe.powerfulbackpacks.messages;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

@@ -1,4 +1,4 @@
-package fun.felipe.powerfulbackpacks.old.placeholder;
+package fun.felipe.powerfulbackpacks.b.old.placeholder;
 
 
 public abstract class Placeholder<T> {

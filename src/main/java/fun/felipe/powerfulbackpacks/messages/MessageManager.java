@@ -1,8 +1,8 @@
-package fun.felipe.powerfulbackpacks.managers.messages;
+package fun.felipe.powerfulbackpacks.messages;
 
 import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
-import fun.felipe.powerfulbackpacks.managers.messages.placeholder.Placeholder;
-import fun.felipe.powerfulbackpacks.managers.messages.placeholder.implementation.MessagePlaceholder;
+import fun.felipe.powerfulbackpacks.messages.placeholder.Placeholder;
+import fun.felipe.powerfulbackpacks.messages.placeholder.implementation.MessagePlaceholder;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;

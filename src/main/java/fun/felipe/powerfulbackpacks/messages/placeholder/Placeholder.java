@@ -1,4 +1,4 @@
-package fun.felipe.powerfulbackpacks.managers.messages.placeholder;
+package fun.felipe.powerfulbackpacks.messages.placeholder;
 
 public abstract class Placeholder<T> {
     private final String regexKey;

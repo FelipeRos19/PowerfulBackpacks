@@ -1,24 +1,4 @@
-package fun.felipe.powerfulbackpacks.old.manager;
-
-import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
-import fun.felipe.powerfulbackpacks.old.entities.BackpackEntity;
-import fun.felipe.powerfulbackpacks.old.placeholder.Placeholder;
-import fun.felipe.powerfulbackpacks.old.placeholder.implementations.BackpackPlaceholder;
-import fun.felipe.powerfulbackpacks.old.placeholder.implementations.MessagePlaceholder;
-import fun.felipe.powerfulbackpacks.utils.StringUtils;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextReplacementConfig;
-import net.kyori.adventure.text.format.TextDecoration;
-import org.bukkit.Bukkit;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.plugin.Plugin;
-import org.intellij.lang.annotations.RegExp;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
+package fun.felipe.powerfulbackpacks.b.old.manager;
 
 public class MessagesManager {
     /*
