@@ -6,11 +6,17 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
-public class PersistentDataUtils {
+public class ItemPersistentDataUtils {
 
     public static void addStringData(ItemStack itemStack, String key, String data) {
         ItemMeta meta = itemStack.getItemMeta();
         meta.getPersistentDataContainer().set(buildKey(key), PersistentDataType.STRING, data);
+        itemStack.setItemMeta(meta);
+    }
+
+    public static void addBooleanData(ItemStack itemStack, String key, boolean data) {
+        ItemMeta meta = itemStack.getItemMeta();
+        meta.getPersistentDataContainer().set(buildKey(key), PersistentDataType.BOOLEAN, data);
         itemStack.setItemMeta(meta);
     }
 

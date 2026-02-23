@@ -1,4 +1,4 @@
-package fun.felipe.powerfulbackpacks.managers.items;
+package fun.felipe.powerfulbackpacks.items;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

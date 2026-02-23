@@ -40,6 +40,7 @@ public class BackpackCommand implements CommandExecutor {
         switch (args[0].toLowerCase()) {
             case "give" -> new GiveBackpackSubCommand().onCommand(player, args);
             case "list" -> new ListBackpackSubCommand().onCommand(player, args);
+            case "teste" -> new TestSubCommand().onCommand(player, args);
             default -> player.sendMessage(PowerfulBackpacks.getInstance().getMessageManager().formatCommandMessage("backpack_command_usage"));
         }
         return false;

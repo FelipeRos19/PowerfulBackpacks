@@ -13,15 +13,3 @@ Messages:
   give_command_success: '<green>Backpack %backpack_name% received Successfully!'
   list_command_message: '<green>List of Backpacks:'
   list_command_items_message: '<green> - %backpack_name% (%backpack%)'
-
-#There are no placeholders in this section!
-LoomItem:
-  item_name: '<gold>Reinforced Loom'
-  item_lore:
-    - ''
-    - '<grey>A <gold>Reinforced Loom'
-    - '<grey>For Creating Backpacks!'
-    - ''
-
-LoomGui:
-  gui_title: '<gold>Reinforced Loom'

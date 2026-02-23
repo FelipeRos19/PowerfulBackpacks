@@ -1,11 +1,6 @@
 package fun.felipe.powerfulbackpacks.commands.backpackSubCommands;
 
-import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
-import fun.felipe.powerfulbackpacks.commands.SubCommand;
-import fun.felipe.powerfulbackpacks.old.entities.BackpackEntity;
-import fun.felipe.powerfulbackpacks.old.placeholder.implementations.BackpackPlaceholder;
-import fun.felipe.powerfulbackpacks.old.placeholder.implementations.MessagePlaceholder;
-import net.kyori.adventure.text.Component;
+import fun.felipe.powerfulbackpacks.utils.commands.SubCommand;
 import org.bukkit.entity.Player;
 
 //TODO: ARRUMAR TUDO!

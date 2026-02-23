@@ -1,4 +1,4 @@
-package fun.felipe.powerfulbackpacks.old.gui;
+package fun.felipe.powerfulbackpacks.b.old.gui;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;

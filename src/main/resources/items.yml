@@ -1,17 +1,19 @@
 Items:
-  sewing_kit:
-    name: '<gold>Sewing Kit'
+  reinforced_loom:
+    name: '<gold>Reinforced Loom'
     lore:
       - ''
-      - '<grey>Its a Sewing Kit'
+      - '<grey>Used to create Backpacks.'
       - ''
-    material: 'PAPER'
-    texture: 'powerfulbackpacks:kit_costura_item'
+    material: 'LOOM'
+    #texture: 'namespace:texture_name' #texture struct example
+    #customModelData: 1 #model data struct example
     craft:
       shape:
-        - '   '
-        - 'SA '
-        - '   '
+        - 'SS '
+        - 'II '
+        - 'PP '
       materials:
-        S: 'SHEARS'
-        A: 'STRING'
+        S: 'STRING'
+        I: 'IRON_INGOT'
+        P: 'OAK_PLANKS'

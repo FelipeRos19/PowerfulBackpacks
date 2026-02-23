@@ -1,25 +1,37 @@
 package fun.felipe.powerfulbackpacks;
 
 import de.tr7zw.changeme.nbtapi.NBT;
+import fun.felipe.inventoryCreator.InventoryCreator;
 import fun.felipe.powerfulbackpacks.commands.BackpackCommand;
-import fun.felipe.powerfulbackpacks.commands.TestCommand;
-import fun.felipe.powerfulbackpacks.managers.items.ItemFile;
-import fun.felipe.powerfulbackpacks.managers.items.ItemManager;
-import fun.felipe.powerfulbackpacks.managers.messages.MessageFile;
-import fun.felipe.powerfulbackpacks.managers.messages.MessageManager;
+import fun.felipe.powerfulbackpacks.events.AnvilPrepareListener;
+import fun.felipe.powerfulbackpacks.events.BlockBreakListener;
+import fun.felipe.powerfulbackpacks.events.BlockPlaceListener;
+import fun.felipe.powerfulbackpacks.events.PlayerInteractListener;
+import fun.felipe.powerfulbackpacks.items.ItemFile;
+import fun.felipe.powerfulbackpacks.items.ItemsManager;
+import fun.felipe.powerfulbackpacks.messages.MessageFile;
+import fun.felipe.powerfulbackpacks.messages.MessageManager;
 import fun.felipe.powerfulbackpacks.utils.Metrics;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
+import fun.felipe.powerfulbackpacks.views.IconsFile;
+import fun.felipe.powerfulbackpacks.views.IconsManager;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PowerfulBackpacks extends JavaPlugin {
-
     private static PowerfulBackpacks instance;
+
     private MessageFile messageFile;
     private MessageManager messageManager;
-    private ItemFile itemFile;
-    private ItemManager itemManager;
+
+    private IconsFile iconsFile;
+    private IconsManager iconsManager;
+
+
+    private ItemFile itemsFile;
+    private ItemsManager itemsManager;
+
     /*
     @Getter
     private CraftManager craftManager;
@@ -55,22 +67,35 @@ public final class PowerfulBackpacks extends JavaPlugin {
         String permission = this.getConfig().getString("Permission");
         if (permission == null) permission = "powerfulbackpacks.use";
         this.pluginPermission = permission;
-
         this.messageFile = new MessageFile("messages.yml", this);
         this.messageManager = new MessageManager(instance);
 
-        this.itemFile = new ItemFile("items.yml", this);
+        this.iconsFile = new IconsFile("gui.yml", this);
+        this.iconsManager = new IconsManager(instance);
+
+        this.itemsFile = new ItemFile("items.yml", this);
+        this.itemsManager = new ItemsManager(instance);
+
+        new InventoryCreator(this);
+
+        /*
+        this.itemFile = new ItemFile("old/old_items.yml", this);
         this.itemManager = new ItemManager(instance);
+         */
 
         //this.craftManager = new CraftManager(this);
     }
 
     private void commands() {
         new BackpackCommand(this);
-        new TestCommand(this);
+        //new TestCommand(this);
     }
 
     private void events() {
+        new BlockPlaceListener(this);
+        new BlockBreakListener(this);
+        new PlayerInteractListener(this);
+        new AnvilPrepareListener(this);
     }
 
     public static PowerfulBackpacks getInstance() {
@@ -89,7 +114,19 @@ public final class PowerfulBackpacks extends JavaPlugin {
         return this.messageFile;
     }
 
-    public ItemFile getItemFile() {
-        return this.itemFile;
+    public IconsFile getIconsFile() {
+        return iconsFile;
+    }
+
+    public IconsManager getIconsManager() {
+        return iconsManager;
+    }
+
+    public ItemFile getItemsFile() {
+        return itemsFile;
+    }
+
+    public ItemsManager getItemsManager() {
+        return itemsManager;
     }
 }

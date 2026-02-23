@@ -1,12 +1,8 @@
-package fun.felipe.powerfulbackpacks.old.events;
+package fun.felipe.powerfulbackpacks.b.old.events;
 
-import fun.felipe.powerfulbackpacks.old.gui.BackpackGUI;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.Plugin;
 
 public class PlayerInteractListener implements Listener {

@@ -1,0 +1,42 @@
+Items:
+  sewing_kit:
+    name: '<gold>Sewing Kit'
+    lore:
+      - ''
+      - '<grey>Its a Sewing Kit'
+      - ''
+    material: 'PAPER'
+    texture: 'powerfulbackpacks:kit_costura_item'
+    craft:
+      shape:
+        - '   '
+        - 'SA '
+        - '   '
+      materials:
+        S: 'SHEARS'
+        A: 'STRING'
+
+  arrow:
+    name: '<grey>Result'
+    lore:
+      - ''
+    material: 'PAPER'
+    texture: 'powerfulbackpacks:arrow_1'
+
+  dye_slot:
+    name: '<gold>Dye Slot'
+    lore:
+      - ''
+      - '<gold>Put some dye'
+      - ''
+    material: 'PAPER'
+    texture: 'powerfulbackpacks:dye_slot'
+
+  sewing_kit_craft:
+    name: '<gold>Sewing Kit Craft'
+    lore:
+      - ''
+      - '<gold>Put some Sewing Kit'
+      - ''
+    material: 'PAPER'
+    texture: 'powerfulbackpacks:kit_costura_craft'

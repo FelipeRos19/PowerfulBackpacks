@@ -4,7 +4,6 @@ import de.tr7zw.changeme.nbtapi.NBT;
 import fun.felipe.powerfulbackpacks.utils.StringUtils;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BundleMeta;
@@ -24,28 +23,32 @@ public class ItemUtils {
         return itemStack;
     }
 
-    public static ItemStack createCustomItem(Material type, String name, List<String> lore, String itemID) {
+    public static ItemStack createItem(Material type, String name, List<String> lore) {
         ItemStack itemStack = new ItemStack(type);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.displayName(StringUtils.formatItemName(name));
         itemMeta.lore(StringUtils.formatItemLore(lore));
         itemStack.setItemMeta(itemMeta);
-        PersistentDataUtils.addStringData(itemStack, "custom-item", itemID);
         return itemStack;
     }
 
-    public static ItemStack createCustomItem(Material type, String name, List<String> lore, String textureKey, String itemID) {
-        ItemStack itemStack = new ItemStack(type);
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.displayName(StringUtils.formatItemName(name));
-        itemMeta.lore(StringUtils.formatItemLore(lore));
-        itemStack.setItemMeta(itemMeta);
-        PersistentDataUtils.addStringData(itemStack, "custom-item", itemID);
-
-
+    public static ItemStack setTexture(ItemStack itemStack, String texture) {
         NBT.modifyComponents(itemStack, nbt -> {
-            nbt.setString("minecraft:item_model", textureKey);
+            nbt.setString("minecraft:item_model", texture);
         });
+        return itemStack;
+    }
+
+    public static ItemStack setModelData(ItemStack itemStack, int modelData) {
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setCustomModelData(modelData);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+
+    public static ItemStack createCustomItem(Material type, String name, List<String> lore, String itemID) {
+        ItemStack itemStack = createItem(type, name, lore);
+        ItemPersistentDataUtils.addStringData(itemStack, "custom-item", itemID);
         return itemStack;
     }
 }

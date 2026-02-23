@@ -1,4 +1,4 @@
-package fun.felipe.powerfulbackpacks.old.entities;
+package fun.felipe.powerfulbackpacks.b.old.entities;
 
 import java.util.List;
 

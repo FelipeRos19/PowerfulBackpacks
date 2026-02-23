@@ -1,13 +1,8 @@
-package fun.felipe.powerfulbackpacks.old.events;
+package fun.felipe.powerfulbackpacks.b.old.events;
 
-import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
-import fun.felipe.powerfulbackpacks.old.entities.RecipeEntity;
-import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 public class CraftPrepareListener implements Listener {

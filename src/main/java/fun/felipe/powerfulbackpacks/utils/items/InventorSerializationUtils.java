@@ -12,7 +12,7 @@ import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-public class SerializationUtils {
+public class InventorSerializationUtils {
 
     public static @Nullable String inventoryToBase64(Inventory inventory) {
         try {

@@ -1,19 +1,21 @@
-package fun.felipe.powerfulbackpacks.managers.items;
+package fun.felipe.powerfulbackpacks.b.codeNewOld.managers.items;
 
 import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
 import fun.felipe.powerfulbackpacks.utils.items.ItemUtils;
-import fun.felipe.powerfulbackpacks.utils.items.PersistentDataUtils;
+import fun.felipe.powerfulbackpacks.utils.items.ItemPersistentDataUtils;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ItemManager {
+    /*
     private final PowerfulBackpacks plugin;
     private final Map<String, ItemStack> registeredItems;
 
@@ -30,7 +32,7 @@ public class ItemManager {
             return;
         }
 
-        NamespacedKey customItemKey = PersistentDataUtils.buildKey("custom-item");
+        NamespacedKey customItemKey = ItemPersistentDataUtils.buildKey("custom-item");
 
         for (String key : itemsSection.getKeys(false)) {
             ConfigurationSection internalItemSection  = itemsSection.getConfigurationSection(key);
@@ -98,4 +100,10 @@ public class ItemManager {
             this.registeredItems.put(key, customItem);
         }
     }
+
+    @Nullable
+    public ItemStack getItem(String itemKey) {
+        return this.registeredItems.get(itemKey);
+    }
+     */
 }

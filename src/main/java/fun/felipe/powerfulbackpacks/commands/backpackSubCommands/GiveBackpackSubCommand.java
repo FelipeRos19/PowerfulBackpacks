@@ -1,11 +1,7 @@
 package fun.felipe.powerfulbackpacks.commands.backpackSubCommands;
 
-import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
-import fun.felipe.powerfulbackpacks.commands.SubCommand;
-import fun.felipe.powerfulbackpacks.old.entities.BackpackEntity;
-import fun.felipe.powerfulbackpacks.old.placeholder.implementations.MessagePlaceholder;
+import fun.felipe.powerfulbackpacks.utils.commands.SubCommand;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 //TODO: ARRUMAR TUDO!
 public class GiveBackpackSubCommand implements SubCommand {

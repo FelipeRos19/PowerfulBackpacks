@@ -1,16 +1,4 @@
-package fun.felipe.powerfulbackpacks.old.manager;
-
-import fun.felipe.powerfulbackpacks.PowerfulBackpacks;
-import fun.felipe.powerfulbackpacks.old.entities.BackpackEntity;
-import fun.felipe.powerfulbackpacks.old.entities.RecipeEntity;
-import fun.felipe.powerfulbackpacks.utils.StringUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
-
-import java.util.*;
+package fun.felipe.powerfulbackpacks.b.old.manager;
 
 public class CraftManager {
     /*
