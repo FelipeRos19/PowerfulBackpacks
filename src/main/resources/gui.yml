@@ -1,0 +1,19 @@
+Icons:
+  knowledge_book:
+    name: '<green>Recipe Book'
+    lore:
+      - ''
+      - '<grey>Its a Recipe Book'
+      - ''
+    material: 'KNOWLEDGE_BOOK'
+    texture: 'powerfulbackpacks:void'
+    #texture: 'namespace:texture_name' #texture struct example
+    #customModelData: 1 #model data struct example
+  reinforced_anvil:
+    name: '<dark_grey>Reinforced Anvil'
+    lore:
+      - ''
+      - '<grey>Used to Upgrade your Backpack'
+      - ''
+    material: 'ANVIL'
+    texture: 'powerfulbackpacks:void'
