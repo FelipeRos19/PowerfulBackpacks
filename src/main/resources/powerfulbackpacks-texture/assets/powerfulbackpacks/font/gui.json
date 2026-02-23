@@ -1,0 +1,34 @@
+{
+  "providers": [
+    {
+      "type": "space",
+      "advances": {
+        "\ue100": -1,
+        "\ue101": -2,
+        "\ue102": -4,
+        "\ue103": -8,
+        "\ue104": -16,
+        "\ue105": -32,
+        "\ue106": -64,
+        "\ue107": -128,
+        "\ue200": 1,
+        "\ue201": 2,
+        "\ue202": 4,
+        "\ue203": 8,
+        "\ue204": 16,
+        "\ue205": 32,
+        "\ue206": 64,
+        "\ue207": 128
+      }
+    },
+    {
+      "type": "bitmap",
+      "file": "powerfulbackpacks:gui/reinforced_loom_17.png",
+      "ascent": 13,
+      "height": 131,
+      "chars": [
+        "\ue001"
+      ]
+    }
+  ]
+}
